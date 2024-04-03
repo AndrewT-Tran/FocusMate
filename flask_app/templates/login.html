@@ -2,24 +2,39 @@
 <html>
 <head>
     <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+
+
 <body>
-    <h1>Login</h1>
+    <div class="container">
+        <h1 class="poppins-semibold">Login</h1>
 
-    {% for message in get_flashed_messages(category_filter=['success']) %}
-        <p style="font-weight:bold; color:green;">{{ message }}</p>
-    {% endfor %}
+        {% for message in get_flashed_messages(category_filter=['success']) %}
+            <p style="font-weight:bold; color:green;" class="poppins-regular">{{ message }}</p>
+        {% endfor %}
 
-    {% for message in get_flashed_messages(category_filter=['error']) %}
-        <p style="font-weight:bold; color:red;">{{ message }}</p>
-    {% endfor %}
-    <form method="POST" action="/login">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
-    <p>Don't have an account? <a href="/signup">Register</a></p>
+        {% for message in get_flashed_messages(category_filter=['error']) %}
+            <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
+        {% endfor %}
+        <form method="POST" action="/login" class="login-form">
+            <div>
+                <label for="username" class="poppins-regular">Username:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div>
+                <label for="password" class="poppins-regular">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <input type="submit" value="Login" class="poppins-semibold">
+            </div>
+        </form>
+        <p class="poppins-regular">Don't have an account? <a href="/signup">Register</a></p>
+    </div>
 </body>
 </html>

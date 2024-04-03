@@ -1,0 +1,54 @@
+.container {
+    width: 300px; /* Adjust width as needed */
+    height: auto; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Add border radius for rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add slight shadow */
+    padding: 20px; /* Add padding */
+    position: absolute; /* Position the container absolutely */
+    top: 50%; /* Move the container to 50% from the top */
+    left: 50%; /* Move the container to 50% from the left */
+    transform: translate(-50%, -50%); /* Center the container */
+}
+
+.signup-form {
+    width: 300px;
+    text-align: center;
+}
+
+.signup-form div {
+    margin-bottom: 10px;
+}
+
+.signup-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-form input[type="text"],
+.signup-form input[type="email"],
+.signup-form input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
+
+.signup-form input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.signup-form input[type="submit"]:hover {
+    background-color: #45a049;
+}
