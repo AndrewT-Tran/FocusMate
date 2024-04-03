@@ -3,6 +3,7 @@ from flask_app import app
 from flask_app.models.user_model import User
 from flask_login import login_user, logout_user, login_required
 
+
 @app.route('/create/user', methods=['POST'])
 def create_user():
     if not User.validate(request.form):
@@ -10,7 +11,8 @@ def create_user():
 
     user_id = User.create_user(request.form)
     if user_id:
-        flash("Successfully created account", "success")  # Flash success message
+        flash("Successfully created account",
+              "success")  # Flash success message
         return redirect('/login?signup_successful=True')
 
     else:
@@ -23,9 +25,11 @@ def create_user():
 def index():
     return redirect("/dashboard")
 
+
 @app.route('/signup')
 def newUser():
     return render_template('signup.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,10 +39,12 @@ def login():
         user = User.checkuser_id(username=username, password=password)
         if user:
             login_user(user)
-            return redirect(f"/user/tasks/{user.user_id}")  # Corrected redirection syntax
+            # Corrected redirection syntax
+            return redirect(f"/user/tasks/{user.user_id}")
         else:
-            flash('Invalid username or password')
+            flash('Invalid username or password', "error")
     return render_template('login.html')
+
 
 @app.route('/logout')
 @login_required
