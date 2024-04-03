@@ -9,6 +9,10 @@
     {% for message in get_flashed_messages(category_filter=['success']) %}
         <p style="font-weight:bold; color:green;">{{ message }}</p>
     {% endfor %}
+
+    {% for message in get_flashed_messages(category_filter=['error']) %}
+        <p style="font-weight:bold; color:red;">{{ message }}</p>
+    {% endfor %}
     <form method="POST" action="/login">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username" required><br>
