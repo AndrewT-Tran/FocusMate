@@ -1,164 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Tasks</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/task.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
 
-</head>
-<body>
-    <!-- Navbar -->
-<nav class="navbar navbar-custom">
-        <div class="container">
-            <div class="navbar-left">
-                <span>Welcome, {{ user.first_name }}!</span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Tasks</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/task.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/clock.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}">
+
+    </head>
+
+    <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-custom">
+            <div class="container">
+                <div class="navbar-left">
+                    <span>Welcome, {{ user.first_name }}!</span>
+                </div>
+                <div class="navbar-right">
+                    <a href="/logout" class="button logout-button"><svg xmlns="http://www.w3.org/2000/svg" width="200"
+                            height="200" viewBox="0 0 1024 1024">
+                            <path fill="currentColor"
+                                d="M512 1024q-139 0-257-68.5T68.5 769T0 512q0-97 34.5-185T132 170q3-3 11.5-12t14-14.5t15-10.5t19.5-5q26 0 45 19t19 45q0 16-3.5 28t-7.5 16l-3 5q-54 53-84 123t-30 148q0 104 51.5 192.5t140 140T512 896t192.5-51.5t140-140T896 512q0-78-30-148.5T783 240q-15-15-15-48q0-26 19-45t45-19q7 0 13.5 2t10.5 4t10.5 8t8.5 8.5t9 10.5t8 9q63 69 97.5 157t34.5 185q0 104-40.5 199t-109 163.5t-163.5 109t-199 40.5zm0-512q-27 0-45.5-18.5T448 448V64q0-27 19-45.5T512.5 0t45 18.5T576 64v384q0 27-18.5 45.5T512 512z" />
+                        </svg>Logout</a>
+                    <a href='/user/profile' class="button profile-button"><svg xmlns="http://www.w3.org/2000/svg"
+                            width="200" height="200" viewBox="0 0 24 24">
+                            <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+                                <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z" />
+                                <path
+                                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z" />
+                            </g>
+                        </svg>Profile</a>
+                </div>
             </div>
-            <div class="navbar-right">
-                <a href="/logout" class="button logout-button"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1024 1024">
-    <path fill="currentColor" d="M512 1024q-139 0-257-68.5T68.5 769T0 512q0-97 34.5-185T132 170q3-3 11.5-12t14-14.5t15-10.5t19.5-5q26 0 45 19t19 45q0 16-3.5 28t-7.5 16l-3 5q-54 53-84 123t-30 148q0 104 51.5 192.5t140 140T512 896t192.5-51.5t140-140T896 512q0-78-30-148.5T783 240q-15-15-15-48q0-26 19-45t45-19q7 0 13.5 2t10.5 4t10.5 8t8.5 8.5t9 10.5t8 9q63 69 97.5 157t34.5 185q0 104-40.5 199t-109 163.5t-163.5 109t-199 40.5zm0-512q-27 0-45.5-18.5T448 448V64q0-27 19-45.5T512.5 0t45 18.5T576 64v384q0 27-18.5 45.5T512 512z"/>
-</svg>Logout</a>
-<a href='/user/profile' class="button profile-button"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-    <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
-        <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z"/>
-        <path d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z"/>
-    </g>
-</svg>Profile</a>
+        </nav>
+
+        <!--Music Player -->
+        <div class="music-player">
+            <div class="player-controls">
+                <button id="play-pause-btn">Play</button>
             </div>
+            <div class="track-info">
+                <p id="track-title">Track Title</p>
+            </div>
+            <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
         </div>
-    </nav>
 
-    <!-- Main Content -->
-    <div class="music-player">
-        <div class="player-controls">
-            <button id="play-pause-btn">Play</button>
+
+
+        {# Clock #}
+        <div class="clock">
+            <p>{{ current_time }}</p>
         </div>
-        <div class="track-info">
-            <p id="track-title">Track Title</p>
-        </div>
-        <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
-    </div>
 
-    <!-- User Information -->
-    <h1>User Information</h1>
-    <p>User ID: {{ user.user_id }}</p>
-    <p>First Name: {{ user.first_name }}</p>
-    <p>Last Name: {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Username: {{ user.username }}</p>
-<p>Created At: {{ user.created_at.strftime('%b %d, %Y %I:%M %p') }}</p> <!-- Format created_at -->
-<p>Updated At: {{ user.updated_at.strftime('%b %d, %Y %I:%M %p') }}</p>
 
-    <!-- Tasks -->
-    <h2>Tasks</h2>
+        <!-- Tasks -->
+        <h2>Tasks</h2>
 
-<a href="/add" class="button add-button"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"/>
-</svg>Add Task</a>
+        <a href="/add" class="button add-button"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"
+                viewBox="0 0 24 24">
+                <path fill="none" stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2"
+                    d="M12 6v12m6-6H6" />
+            </svg>Add Task</a>
 
-    <!-- Pending Tasks -->
-    <h1>Pending Tasks</h1>
-    {% if user.tasks %}
+        <!-- Pending Tasks -->
+        <h1>Pending Tasks</h1>
+        {% if user.tasks %}
         <div class="tasks-grid">
             {% for task in user.tasks %}
-                {% if task.status != 'Completed' and task.status != 'InProgress' %}
-                    <div class="task {% if task.priority == 'High' %} high-priority
+            {% if task.status != 'Completed' and task.status != 'InProgress' %}
+            <div class="task {% if task.priority == 'High' %} high-priority
                                    {% elif task.priority == 'Medium' %} medium-priority
                                    {% else %} low-priority {% endif %}">
-                        <p>Task ID: {{ task.task_id }}</p>
-                        <p>Title: {{ task.title }}</p>
-                        <p>Description: {{ task.description }}</p>
-                        <p>Priority:
-                            <form method="POST" action="/update_priority/{{ task.task_id }}" id="priority-form-{{ task.task_id }}">
-                                <select name="priority" onchange="document.getElementById('priority-form-{{ task.task_id }}').submit();">
-                                    <option value="High" {% if task.priority == 'High' %} selected {% endif %}>High</option>
-                                    <option value="Medium" {% if task.priority == 'Medium' %} selected {% endif %}>Medium</option>
-                                    <option value="Low" {% if task.priority == 'Low' %} selected {% endif %}>Low</option>
-                                </select>
-                                <!-- Remove the input type="submit" -->
-                            </form>
-                        </p>
-                        <p>Deadline: {{ task.deadline }}</p>
-                        <p>Status: {{ task.status }}</p>
-                        <p>Created At: {{ task.created_at }}</p>
-                        <p>Updated At: {{ task.updated_at }}</p>
-                                          <a class="button button-red" href="/delete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 26 26">
-    <path fill="currentColor" d="M11.5-.031c-1.958 0-3.531 1.627-3.531 3.594V4H4c-.551 0-1 .449-1 1v1H2v2h2v15c0 1.645 1.355 3 3 3h12c1.645 0 3-1.355 3-3V8h2V6h-1V5c0-.551-.449-1-1-1h-3.969v-.438c0-1.966-1.573-3.593-3.531-3.593h-3zm0 2.062h3c.804 0 1.469.656 1.469 1.531V4H10.03v-.438c0-.875.665-1.53 1.469-1.53zM6 8h5.125c.124.013.247.031.375.031h3c.128 0 .25-.018.375-.031H20v15c0 .563-.437 1-1 1H7c-.563 0-1-.437-1-1V8zm2 2v12h2V10H8zm4 0v12h2V10h-2zm4 0v12h2V10h-2z"/>
-</svg>Delete</a>
-              <a class="button pending-button" href="/edit/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 576 512">
-    <path fill="currentColor" d="m402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/>
-</svg>Edit</a>
+                <p>Task ID: {{ task.task_id }}</p>
+                <p>Title: {{ task.title }}</p>
+                <p>Description: {{ task.description }}</p>
+                <p>Priority:
+                <form method="POST" action="/update_priority/{{ task.task_id }}" id="priority-form-{{ task.task_id }}">
+                    <select name="priority"
+                        onchange="document.getElementById('priority-form-{{ task.task_id }}').submit();">
+                        <option value="High" {% if task.priority=='High' %} selected {% endif %}>High</option>
+                        <option value="Medium" {% if task.priority=='Medium' %} selected {% endif %}>Medium</option>
+                        <option value="Low" {% if task.priority=='Low' %} selected {% endif %}>Low</option>
+                    </select>
+                    <!-- Remove the input type="submit" -->
+                </form>
+                </p>
+                <p>Deadline: {{ task.deadline }}</p>
+                <p>Status: {{ task.status }}</p>
+                <p>Created At: {{ task.created_at }}</p>
+                <p>Updated At: {{ task.updated_at }}</p>
+                <a class="button button-red" href="/delete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="15" height="15" viewBox="0 0 26 26">
+                        <path fill="currentColor"
+                            d="M11.5-.031c-1.958 0-3.531 1.627-3.531 3.594V4H4c-.551 0-1 .449-1 1v1H2v2h2v15c0 1.645 1.355 3 3 3h12c1.645 0 3-1.355 3-3V8h2V6h-1V5c0-.551-.449-1-1-1h-3.969v-.438c0-1.966-1.573-3.593-3.531-3.593h-3zm0 2.062h3c.804 0 1.469.656 1.469 1.531V4H10.03v-.438c0-.875.665-1.53 1.469-1.53zM6 8h5.125c.124.013.247.031.375.031h3c.128 0 .25-.018.375-.031H20v15c0 .563-.437 1-1 1H7c-.563 0-1-.437-1-1V8zm2 2v12h2V10H8zm4 0v12h2V10h-2zm4 0v12h2V10h-2z" />
+                    </svg>Delete</a>
+                <a class="button pending-button" href="/edit/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="15" height="15" viewBox="0 0 576 512">
+                        <path fill="currentColor"
+                            d="m402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" />
+                    </svg>Edit</a>
 
-                        <a class="button" href="/mark_in_progress/{{task.task_id}}">Work On</a>
-                    </div>
-                {% endif %}
+                <a class="button" href="/mark_in_progress/{{task.task_id}}">Work On</a>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
-    {% else %}
+        {% else %}
         <h1>No pending tasks</h1>
-    {% endif %}
+        {% endif %}
 
-    <!-- Working On -->
-    <h1>Working On</h1>
-    <div class="tasks-grid">
-        {% for task in user.tasks %}
+        <!-- Working On -->
+        <h1>Working On</h1>
+        <div class="tasks-grid">
+            {% for task in user.tasks %}
             {% if task.status == 'InProgress' %}
-                <div class="task {% if task.priority == 'High' %} high-priority
+            <div class="task {% if task.priority == 'High' %} high-priority
                                {% elif task.priority == 'Medium' %} medium-priority
                                {% else %} low-priority {% endif %}">
-                    <p>Task ID: {{ task.task_id }}</p>
-                    <p>Title: {{ task.title }}</p>
-                    <p>Description: {{ task.description }}</p>
-                    <p>Priority: {{ task.priority }}</p>
-                                <form method="POST" action="/update_priority/{{ task.task_id }}" id="priority-form-{{ task.task_id }}">
-                                <select name="priority" onchange="document.getElementById('priority-form-{{ task.task_id }}').submit();">
-                                    <option value="High" {% if task.priority == 'High' %} selected {% endif %}>High</option>
-                                    <option value="Medium" {% if task.priority == 'Medium' %} selected {% endif %}>Medium</option>
-                                    <option value="Low" {% if task.priority == 'Low' %} selected {% endif %}>Low</option>
-                                </select>
-                                <!-- Remove the input type="submit" -->
-                            </form>
-                    <p>Deadline: {{ task.deadline }}</p>
-                    <p>Status: {{ task.status }}</p>
-                    <p>Created At: {{ task.created_at }}</p>
-                    <p>Updated At: {{ task.updated_at }}</p>
-                               <a class="button button-red" href="/delete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 26 26">
-    <path fill="currentColor" d="M11.5-.031c-1.958 0-3.531 1.627-3.531 3.594V4H4c-.551 0-1 .449-1 1v1H2v2h2v15c0 1.645 1.355 3 3 3h12c1.645 0 3-1.355 3-3V8h2V6h-1V5c0-.551-.449-1-1-1h-3.969v-.438c0-1.966-1.573-3.593-3.531-3.593h-3zm0 2.062h3c.804 0 1.469.656 1.469 1.531V4H10.03v-.438c0-.875.665-1.53 1.469-1.53zM6 8h5.125c.124.013.247.031.375.031h3c.128 0 .25-.018.375-.031H20v15c0 .563-.437 1-1 1H7c-.563 0-1-.437-1-1V8zm2 2v12h2V10H8zm4 0v12h2V10h-2zm4 0v12h2V10h-2z"/>
-</svg>Delete</a>
-                    <a class="button pending-button" href="/edit/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 576 512">
-    <path fill="currentColor" d="m402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"/>
-</svg>Edit</a>
-                    <a class="button" href="/complete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="150" viewBox="0 0 24 24">
-    <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M19.548 7.267a2 2 0 1 0-3.096-2.533L8.666 14.25L6.2 12.4a2 2 0 0 0-2.4 3.2l3.233 2.425a3 3 0 0 0 4.122-.5z"/>
-</svg>Complete</a>
+                <p>Task ID: {{ task.task_id }}</p>
+                <p>Title: {{ task.title }}</p>
+                <p>Description: {{ task.description }}</p>
+                <p>Priority: {{ task.priority }}</p>
+                <form method="POST" action="/update_priority/{{ task.task_id }}" id="priority-form-{{ task.task_id }}">
+                    <select name="priority"
+                        onchange="document.getElementById('priority-form-{{ task.task_id }}').submit();">
+                        <option value="High" {% if task.priority=='High' %} selected {% endif %}>High</option>
+                        <option value="Medium" {% if task.priority=='Medium' %} selected {% endif %}>Medium</option>
+                        <option value="Low" {% if task.priority=='Low' %} selected {% endif %}>Low</option>
+                    </select>
+                    <!-- Remove the input type="submit" -->
+                </form>
+                <p>Deadline: {{ task.deadline }}</p>
+                <p>Status: {{ task.status }}</p>
+                <p>Created At: {{ task.created_at }}</p>
+                <p>Updated At: {{ task.updated_at }}</p>
+                <a class="button button-red" href="/delete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="15" height="15" viewBox="0 0 26 26">
+                        <path fill="currentColor"
+                            d="M11.5-.031c-1.958 0-3.531 1.627-3.531 3.594V4H4c-.551 0-1 .449-1 1v1H2v2h2v15c0 1.645 1.355 3 3 3h12c1.645 0 3-1.355 3-3V8h2V6h-1V5c0-.551-.449-1-1-1h-3.969v-.438c0-1.966-1.573-3.593-3.531-3.593h-3zm0 2.062h3c.804 0 1.469.656 1.469 1.531V4H10.03v-.438c0-.875.665-1.53 1.469-1.53zM6 8h5.125c.124.013.247.031.375.031h3c.128 0 .25-.018.375-.031H20v15c0 .563-.437 1-1 1H7c-.563 0-1-.437-1-1V8zm2 2v12h2V10H8zm4 0v12h2V10h-2zm4 0v12h2V10h-2z" />
+                    </svg>Delete</a>
+                <a class="button pending-button" href="/edit/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg"
+                        width="15" height="15" viewBox="0 0 576 512">
+                        <path fill="currentColor"
+                            d="m402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z" />
+                    </svg>Edit</a>
+                <a class="button" href="/complete/{{task.task_id}}"><svg xmlns="http://www.w3.org/2000/svg" width="15"
+                        height="150" viewBox="0 0 24 24">
+                        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"
+                            d="M19.548 7.267a2 2 0 1 0-3.096-2.533L8.666 14.25L6.2 12.4a2 2 0 0 0-2.4 3.2l3.233 2.425a3 3 0 0 0 4.122-.5z" />
+                    </svg>Complete</a>
 
-                </div>
+            </div>
             {% endif %}
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
 
-    <!-- Completed -->
-    <h1>Completed</h1>
-    <div class="tasks-grid">
-        {% for task in user.tasks %}
+        <!-- Completed -->
+        <h1>Completed</h1>
+        <div class="tasks-grid">
+            {% for task in user.tasks %}
             {% if task.status == 'Completed' %}
-                <div class="completed-task task">
-                    <p>Task ID: {{ task.task_id }}</p>
-                    <p>Title: {{ task.title }}</p>
-                    <p>Description: {{ task.description }}</p>
-                    <p>Priority: {{ task.priority }}</p>
-                    <p>Deadline: {{ task.deadline }}</p>
-                    <p>Status: {{ task.status }}</p>
-                    <p>Created At: {{ task.created_at }}</p>
-                    <p>Updated At: {{ task.updated_at }}</p>
-                </div>
+            <div class="completed-task task">
+                <p>Task ID: {{ task.task_id }}</p>
+                <p>Title: {{ task.title }}</p>
+                <p>Description: {{ task.description }}</p>
+                <p>Priority: {{ task.priority }}</p>
+                <p>Deadline: {{ task.deadline }}</p>
+                <p>Status: {{ task.status }}</p>
+                <p>Created At: {{ task.created_at }}</p>
+                <p>Updated At: {{ task.updated_at }}</p>
+            </div>
             {% endif %}
-        {% endfor %}
-    </div>
-</body>
-<script src="{{ url_for('static', filename='js/audio.js') }}"></script>
+            {% endfor %}
+        </div>
+    </body>
+    <script src="{{ url_for('static', filename='js/audio.js') }}"></script>
+
 </html>

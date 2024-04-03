@@ -62,7 +62,6 @@ def user_profile():
     # Retrieve user information from the database
     user_id = current_user.user_id
     user = User.get_by_id(user_id)
-
     # Render the template with user information
     return render_template('user_profile.html', user=user)
 
