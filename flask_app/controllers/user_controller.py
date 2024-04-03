@@ -1,7 +1,7 @@
 from flask import render_template, redirect, request, flash
 from flask_app import app
 from flask_app.models.user_model import User
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required, current_user
 from flask_bcrypt import Bcrypt
 from flask_app.config.mysqlconnection import connectToMySQL
 bcrypt = Bcrypt(app)
@@ -41,7 +41,9 @@ def create_user():
 
 @app.route('/')
 def index():
-    return render_template('login.html')
+    if current_user.is_authenticated:  # Check if user is logged in
+        return redirect('/dashboard')  # Redirect logged-in user to dashboard
+    return render_template('login.html')  # Render login page for non-logged-in user
 
 @app.route('/signup')
 def newUser():
@@ -56,8 +58,7 @@ def login():
         user = User.checkuser_id(username=username, password=password)
         if user:
             login_user(user)
-            # Corrected redirection syntax
-            return redirect(f"/user/tasks/{user.user_id}")
+            return redirect('/dashboard')  # Redirect to the dashboard page
         else:
             flash('Invalid username or password', "error")
     return render_template('login.html')

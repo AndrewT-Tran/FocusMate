@@ -10,17 +10,20 @@ from flask_login import login_required
 @app.route('/dashboard')
 @login_required
 def dashboard():
-    user_id = current_user.user_id # we are getting user_id from flask-login
+    user_id = current_user.user_id
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
     return render_template('dashboard.html', user=user, tasks=tasks)
 
 @app.route('/user/tasks/<int:user_id>')
 @login_required
-def show_user_tasks(user_id):
+def show_user_tasks(user_id=None):
+    if user_id is None:
+        user_id = current_user.user_id
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
     return render_template('dashboard.html', user=user, tasks=tasks)
+
 
 @app.route('/edit/task/<int:task_id>', methods=['GET', 'POST'])
 @login_required

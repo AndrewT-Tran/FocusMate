@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/form.css') }}"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Update Task</title>
 </head>
 <body>
+    <div class="container">
     <h1>Update Task</h1>
     <form method="POST" action="/update">
         <input type="hidden" name="task_id" value="{{ task.task_id }}">
@@ -32,7 +39,11 @@
         <label for="deadline">Deadline:</label>
         <input type="date" name="deadline" value="{{ task.deadline }}" id="deadline" required>
         <br>
-        <input type="submit" value="Edit Task">
+
+        <button type="submit" class="create-task-button">Submit</button>
+<button type="button" class="button button-red" onclick="window.location.href='/'">Cancel</button>
+
     </form>
+    </div>
 </body>
 </html>
