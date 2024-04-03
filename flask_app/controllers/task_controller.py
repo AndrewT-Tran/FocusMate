@@ -33,7 +33,8 @@ def edit_task(task_id):
 @app.route('/add')
 @login_required
 def add_task():
-    return render_template("add_task.html")
+    user = current_user  # Get the current user
+    return render_template("add_task.html", user=user)
 
 
 @app.route('/post/task', methods=['POST'])
