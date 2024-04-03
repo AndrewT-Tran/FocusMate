@@ -1,9 +1,12 @@
+from flask_bcrypt import Bcrypt
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.task_model import Task
 from flask_login import UserMixin
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
+bcrypt = Bcrypt()
 
 class User(UserMixin):
     def __init__(self, data):
@@ -16,46 +19,46 @@ class User(UserMixin):
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.tasks = []  # Add 'tasks' attribute
+
     def get_id(self):
         return str(self.user_id)
-    
-    
-    
+
     @classmethod
-    def create_user(cls, data):
+    def create_user(cls, data, hashed_password):  # Add hashed_password as an argument
         query = """
             INSERT INTO users 
             (first_name, last_name, email, username, password_hash, created_at, updated_at) 
             VALUES 
             (%(first_name)s, %(last_name)s, %(email)s, %(username)s, %(password_hash)s, NOW(), NOW());
         """
+        data['password_hash'] = hashed_password  # Assign hashed_password to the data dictionary
         user_id = connectToMySQL('focusmate').query_db(query, data)
         return user_id
+
 
     @classmethod
     def checkuser_id(cls, username, password):
         query = """
             SELECT * FROM users
-            WHERE username = %(username)s AND password_hash = %(password_hash)s;
+            WHERE username = %(username)s;
         """
-        data = {'username': username, 'password_hash': password}  # Assuming password is already hashed
-        results = connectToMySQL('focusmate').query_db(query, data)
-        if results:
-            result = results[0]  # Get the first result
+        data = {'username': username}
+        user = connectToMySQL('focusmate').query_db(query, data)
+        if user and bcrypt.check_password_hash(user[0]['password_hash'], password):
             user_data = {
-                'user_id': result['user_id'],
-                'first_name': result['first_name'],
-                'last_name': result['last_name'],
-                'email': result['email'],
-                'username': result['username'],
-                'password_hash': result['password_hash'],
-                'created_at': result['created_at'],
-                'updated_at': result['updated_at'],
+                'user_id': user[0]['user_id'],
+                'first_name': user[0]['first_name'],
+                'last_name': user[0]['last_name'],
+                'email': user[0]['email'],
+                'username': user[0]['username'],
+                'password_hash': user[0]['password_hash'],
+                'created_at': user[0]['created_at'],
+                'updated_at': user[0]['updated_at'],
             }
             return User(user_data)
         else:
             return None
-        
+
     @staticmethod
     def validate(data):
         is_valid = True
@@ -67,12 +70,12 @@ class User(UserMixin):
             is_valid = False
         if len(data['username']) < 2:
             is_valid = False
-        if len(data['password_hash']) < 8:
+        if len(data['password']) < 8:
             is_valid = False
-        if data['password_hash'] != data['confirm_password']:
+        if data['password'] != data['confirm_password']:
             is_valid = False
         return is_valid
-        
+
     @classmethod
     def get_by_id(cls, user_id):
         query = """

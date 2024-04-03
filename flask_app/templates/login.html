@@ -15,11 +15,11 @@
         <h1 class="poppins-semibold">Login</h1>
 
         {% for message in get_flashed_messages(category_filter=['success']) %}
-            <p style="font-weight:bold; color:green;" class="poppins-regular">{{ message }}</p>
+            <p style="font-weight:bold; color:green;" class="success poppins-regular">{{ message }}</p>
         {% endfor %}
 
         {% for message in get_flashed_messages(category_filter=['error']) %}
-            <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
+            <p style="font-weight:bold; color:red;" class="error poppins-regular">{{ message }}</p>
         {% endfor %}
         <form method="POST" action="/login" class="login-form">
             <div>

@@ -2,29 +2,46 @@ from flask import render_template, redirect, request, flash
 from flask_app import app
 from flask_app.models.user_model import User
 from flask_login import login_user, logout_user, login_required
-
+from flask_bcrypt import Bcrypt
+from flask_app.config.mysqlconnection import connectToMySQL
+bcrypt = Bcrypt(app)
 
 @app.route('/create/user', methods=['POST'])
 def create_user():
-    if not User.validate(request.form):
+    form_data = request.form.to_dict()  # Convert ImmutableMultiDict to dictionary
+
+    # Check if username already exists
+    query_username = "SELECT COUNT(*) FROM users WHERE username = %(username)s"
+    result_username = connectToMySQL('focusmate').query_db(query_username, {'username': form_data['username']})
+    if result_username[0]['COUNT(*)'] > 0:
+        flash("Username already exists", "error")
         return redirect('/signup')
 
-    user_id = User.create_user(request.form)
-    if user_id:
-        flash("Successfully created account",
-              "success")  # Flash success message
-        return redirect('/login?signup_successful=True')
+    # Check if email already exists
+    query_email = "SELECT COUNT(*) FROM users WHERE email = %(email)s"
+    result_email = connectToMySQL('focusmate').query_db(query_email, {'email': form_data['email']})
+    if result_email[0]['COUNT(*)'] > 0:
+        flash("Email already exists", "error")
+        return redirect('/signup')
 
+    if not User.validate(form_data):
+        return redirect('/signup')
+
+    # Hash the password before storing it in the database
+    hashed_password = bcrypt.generate_password_hash(form_data['password']).decode('utf-8')
+
+    user_id = User.create_user(form_data, hashed_password)
+    if user_id:
+        flash("Successfully created account", "success")
+        return redirect('/login')
     else:
-        flash("Failed to create account", "error")  # Flash error message
+        flash("Failed to create account", "error")
         return redirect('/signup')
 
 
 @app.route('/')
-@login_required
 def index():
-    return redirect("/dashboard")
-
+    return render_template('login.html')
 
 @app.route('/signup')
 def newUser():

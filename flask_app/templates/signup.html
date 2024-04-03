@@ -13,17 +13,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    {% if signup_successful %}
-    <script>
-        alert("Successfully created account");
-    </script>
-    {% else %}
-    
-    {% for message in get_flashed_messages(category_filter=['error']) %}
-        <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-    {% endfor %}
-    {% endif %}
     <div class="container">
+        {% if signup_successful %}
+        <script>
+            alert("Successfully created account");
+        </script>
+        {% else %}
+        
+        {% for message in get_flashed_messages(category_filter=['error']) %}
+        <div style="font-weight:bold; font-size: 16px;" class="poppins-regular error">{{ message }}</div>
+
+        {% endfor %}
+        {% endif %}
         <h1 class="poppins-semibold">Create User</h1>
         <form method="POST" action="/create/user" class="signup-form">
             <div>
@@ -41,7 +42,7 @@
                 <input type="text" id="last_name" name="last_name" required>
             </div>
             <div>
-                {% for message in get_flashed_messages(category_filter=['email_error']) %}
+                {% for message in get_flashed_messages(category_filter=['email_error', 'email']) %}
                     <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
                 {% endfor %}
                 <label for="email" class="poppins-regular">Email:</label>
@@ -58,8 +59,8 @@
                 {% for message in get_flashed_messages(category_filter=['password_error']) %}
                     <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
                 {% endfor %}
-                <label for="password_hash" class="poppins-regular">Password:</label>
-                <input type="password" id="password_hash" name="password_hash" required>
+                <label for="password" class="poppins-regular">Password:</label>
+                <input type="password" id="password" name="password" required>
             </div>
             <div>
                 {% for message in get_flashed_messages(category_filter=['confirm_password_error']) %}

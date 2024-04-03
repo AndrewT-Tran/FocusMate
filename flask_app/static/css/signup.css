@@ -45,10 +45,23 @@
     color: white;
     padding: 10px 20px;
     border: none;
-    border-radius: 4px;
+    border-radius: 20px; /* Adjust border-radius for a rounded shape */
     cursor: pointer;
 }
 
 .signup-form input[type="submit"]:hover {
     background-color: #45a049;
+}
+
+
+.error {
+    font-weight: bold;
+    font-size: medium;
+    color: red;
+    border-radius: 8px; /* Adjust border-radius for a rounded shape */
+    border: 1px solid red; /* Add border */
+    padding: 15px; /* Add padding */
+    margin-bottom: 10px; /* Add margin */
+    background-color: #ffe6e6; /* Add background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
