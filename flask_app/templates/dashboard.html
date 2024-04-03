@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-left">
+                <span>Welcome, {{ user.first_name }}!</span>
+            </div>
+            <div class="navbar-right">
+                <a href="/logout" class="button logout-button">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
     <div class="music-player">
         <div class="player-controls">
             <button id="play-pause-btn">Play</button>
@@ -20,6 +33,7 @@
         <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
     </div>
 
+    <!-- User Information -->
     <h1>User Information</h1>
     <p>User ID: {{ user.user_id }}</p>
     <p>First Name: {{ user.first_name }}</p>
@@ -29,22 +43,32 @@
     <p>Created At: {{ user.created_at }}</p>
     <p>Updated At: {{ user.updated_at }}</p>
 
+    <!-- Tasks -->
     <h2>Tasks</h2>
     <a href="/add" class="button">Add Task</a>
-    <a href="/logout" class="button logout-button">Logout</a>
 
+    <!-- Pending Tasks -->
     <h1>Pending Tasks</h1>
     {% if user.tasks %}
         <div class="tasks-grid">
             {% for task in user.tasks %}
-                {% if task.status != 'Completed' %}
+                {% if task.status != 'Completed' and task.status != 'InProgress' %}
                     <div class="task {% if task.priority == 'High' %} high-priority
                                    {% elif task.priority == 'Medium' %} medium-priority
                                    {% else %} low-priority {% endif %}">
                         <p>Task ID: {{ task.task_id }}</p>
                         <p>Title: {{ task.title }}</p>
                         <p>Description: {{ task.description }}</p>
-                        <p>Priority: {{ task.priority }}</p>
+                        <p>Priority:
+                            <form method="POST" action="/update_priority/{{ task.task_id }}" id="priority-form-{{ task.task_id }}">
+                                <select name="priority" onchange="document.getElementById('priority-form-{{ task.task_id }}').submit();">
+                                    <option value="High" {% if task.priority == 'High' %} selected {% endif %}>High</option>
+                                    <option value="Medium" {% if task.priority == 'Medium' %} selected {% endif %}>Medium</option>
+                                    <option value="Low" {% if task.priority == 'Low' %} selected {% endif %}>Low</option>
+                                </select>
+                                <!-- Remove the input type="submit" -->
+                            </form>
+                        </p>
                         <p>Deadline: {{ task.deadline }}</p>
                         <p>Status: {{ task.status }}</p>
                         <p>Created At: {{ task.created_at }}</p>
@@ -52,11 +76,16 @@
                         <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
                         <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
                         <a class="button" href="/complete/{{task.task_id}}">Complete Task</a>
+                        <a class="button" href="/mark_in_progress/{{task.task_id}}">Work On</a>
                     </div>
                 {% endif %}
             {% endfor %}
         </div>
+    {% else %}
+        <h1>No pending tasks</h1>
+    {% endif %}
 
+    <!-- Working On -->
     <h1>Working On</h1>
     <div class="tasks-grid">
         {% for task in user.tasks %}
@@ -75,11 +104,13 @@
                     <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
                     <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
                     <a class="button" href="/complete/{{task.task_id}}">Complete Task</a>
+                    <a class="button" href="/mark_pending/{{task.task_id}}">Work On</a>
                 </div>
             {% endif %}
         {% endfor %}
     </div>
 
+    <!-- Completed -->
     <h1>Completed</h1>
     <div class="tasks-grid">
         {% for task in user.tasks %}
@@ -98,9 +129,6 @@
             {% endif %}
         {% endfor %}
     </div>
-
-    {% else %}
-    <h1>No pending tasks</h1>
-    {% endif %}
 </body>
+<script src="{{ url_for('static', filename='js/audio.js') }}"></script>
 </html>
