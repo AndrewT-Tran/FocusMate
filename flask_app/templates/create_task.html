@@ -1,0 +1,60 @@
+<!-- flask_app/templates/create_task.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Task</title>
+</head>
+<body>
+    <h1 style="color:teal">Create Task</h1>
+
+    <form method="POST" action="/post/task">
+        <!-- Hidden input field to store the current user's ID -->
+        <input type="hidden" name="user_id" value="{{ user.user_id }}">
+        <br>
+
+        {% for message in get_flashed_messages(category_filter=['title_error']) %}
+        <div>
+            <p style="font-weight:bold; color:red;">{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" required>
+        <br>
+
+        {% for message in get_flashed_messages(category_filter=['description_error']) %}
+        <div>
+            <p style="font-weight:bold; color:red;">{{ message }}</p>
+        </div>
+        {% endfor %}
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required></textarea>
+        <br>
+
+        <label for="priority">Priority:</label>
+        <select name="priority" id="priority" required>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+        </select>
+        <br>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status" required>
+            <option value="Pending">Pending</option>
+            <option value="InProgress">In Progress</option>
+            <option value="Completed">Completed</option>
+        </select>
+
+        <label for="deadline">Deadline:</label>
+        <input type="date" name="deadline" id="deadline" required>
+        <br>
+
+        <input type="submit" value="Create Task">
+    </form>
+</body>
+</html>

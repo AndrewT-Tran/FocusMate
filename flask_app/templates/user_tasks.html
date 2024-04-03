@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Tasks</title>
+</head>
+<body>
+    <h1>User Information</h1>
+    <p>User ID: {{ user.user_id }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Created At: {{ user.created_at }}</p>
+    <p>Updated At: {{ user.updated_at }}</p>
+
+    <h2>Tasks</h2>
+    <h2> <a href="/add" style="color:teal" > Add Task</a></h2>
+    <h2> <a href="/logout" style="color:teal" > Logout </a></h2>
+    {% if user.tasks %}
+        <ul>
+            {% for task in user.tasks %}
+            <li>
+                <p>Task ID: {{ task.task_id }}</p>
+                <p>Title: {{ task.title }}</p>
+                <p>Description: {{ task.description }}</p>
+                <p>Priority: {{ task.priority }}</p>
+                <p>Deadline: {{ task.deadline }}</p>
+                <p>Status: {{ task.status }}</p>
+                <p>Created At: {{ task.created_at }}</p>
+                <p>Updated At: {{ task.updated_at }}</p>
+                <a href="/delete/{{task.task_id}}" style="color:red"> DELETE</a>
+                <a href="/edit/{{task.task_id}}" style="color:green"> Edit Task</a>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No current tasks.</p>
+    {% endif %}
+</body>
+</html>
