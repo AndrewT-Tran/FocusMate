@@ -19,8 +19,7 @@ class Task:
         results = connectToMySQL("focusmate").query_db(query)
         all_tasks = [cls(row) for row in results]
         return all_tasks
-    
-    
+
     @classmethod
     def get_by_user_id(cls, user_id):
         query = "SELECT * FROM tasks WHERE user_id = %(user_id)s"
@@ -55,7 +54,6 @@ class Task:
 
     @classmethod
     def delete(cls, task_id):
-        # we need to wrap the id in a data dictionary
         data = {
             'task_id': task_id
         }
@@ -88,35 +86,32 @@ class Task:
             priority = %(priority)s,
             deadline = %(deadline)s,
             status = %(status)s
+            WHERE task_id = %(task_id)s
         """
         connectToMySQL("focusmate").query_db(query, data)
-    # we are using static methods to validate the data that is passed in because we are not creating an instance of the class
-    # it is something that is gonna always be the same
+
     @staticmethod
     def validate(form):
-        
         is_valid = True
-        
+
         if len(form["title"]) < 3:
             flash("Title must be at least 3 characters.", "title_error")
-            # the string and the flash category (title_error)
-            # we can seperate the errors by category_filter
             is_valid = False
-        
+
         if len(form["description"]) < 3:
             flash("Be a little more descriptive.", "description_error")
             is_valid = False
-        
+
         if len(form["priority"]) < 1:
             flash("Please select a priority.")
             is_valid = False
-        
+
         if len(form["deadline"]) < 1:
             flash("Please set deadline.")
             is_valid = False
-        
+
         if len(form["status"]) < 1:
-            flash("Set a status we can see how it going so far?")
+            flash("Set a status we can see how it's going so far?")
             is_valid = False
-        
+
         return is_valid

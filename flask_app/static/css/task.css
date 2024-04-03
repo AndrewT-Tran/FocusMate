@@ -1,0 +1,59 @@
+.tasks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  
+  .task {
+    border-radius: 5px;
+    padding: 10px;
+    transition: background-color 0.3s; /* Add transition for background color */
+  }
+  
+  .task:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Change the background color on hover */
+  }
+  
+  .task p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .task a {
+    margin-top: 5px;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .task a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Conditional styling based on priority */
+  .high-priority {
+    background-color: #FFCCCC;
+  }
+  
+  .medium-priority {
+    background-color: rgb(244, 200, 119);
+  }
+  
+  .low-priority {
+    background-color: #CCFFCC;
+  }
+  
+  /* Add hover animation for tasks with high priority */
+  .high-priority:hover {
+    background-color: #FFA8A8; /* Change the background color on hover */
+  }
+  
+  /* Add hover animation for tasks with medium priority */
+  .medium-priority:hover {
+    background-color: rgb(244, 180, 100); /* Change the background color on hover */
+  }
+  
+  /* Add hover animation for tasks with low priority */
+  .low-priority:hover {
+    background-color: #A8FFA8; /* Change the background color on hover */
+  }
+  

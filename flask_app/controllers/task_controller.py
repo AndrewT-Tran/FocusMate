@@ -13,14 +13,14 @@ def dashboard():
     user_id = current_user.user_id # we are getting user_id from flask-login
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
-    return render_template('user_tasks.html', user=user, tasks=tasks)
+    return render_template('dashboard.html', user=user, tasks=tasks)
 
 @app.route('/user/tasks/<int:user_id>')
 @login_required
 def show_user_tasks(user_id):
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
-    return render_template('user_tasks.html', user=user, tasks=tasks)
+    return render_template('dashboard.html', user=user, tasks=tasks)
 
 @app.route('/edit/task/<int:task_id>', methods=['GET', 'POST'])
 @login_required
@@ -76,3 +76,22 @@ def update_task(task_id):
 def save_task():
     Task.update(request.form)
     return redirect('/dashboard')
+
+@app.route('/update', methods=['POST'])
+def update_task_save():
+    # Retrieve form data
+    form_data = {
+        'task_id': request.form['task_id'],
+        'title': request.form['title'],
+        'description': request.form['description'],
+        'priority': request.form['priority'],
+        'deadline': request.form['deadline'],
+        'status': request.form['status']
+    }
+
+    # Call the update method with form data
+    Task.update(form_data)
+
+    # Redirect to a page where the user can see the updated task
+    return redirect('/dashboard')
+

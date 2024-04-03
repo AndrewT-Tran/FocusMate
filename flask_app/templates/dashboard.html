@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Tasks</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/task.css') }}">
+</head>
+<body>
+    <div class="music-player">
+        <div class="player-controls">
+            <button id="play-pause-btn">Play</button>
+        </div>
+        <div class="track-info">
+            <p id="track-title">Track Title</p>
+        </div>
+        <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
+    </div>
+
+    <h1>User Information</h1>
+    <p>User ID: {{ user.user_id }}</p>
+    <p>First Name: {{ user.first_name }}</p>
+    <p>Last Name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+    <p>Username: {{ user.username }}</p>
+    <p>Created At: {{ user.created_at }}</p>
+    <p>Updated At: {{ user.updated_at }}</p>
+
+    <h2>Tasks</h2>
+    <a href="/add" class="button">Add Task</a>
+    <a href="/logout" class="button logout-button">Logout</a>
+    
+    {% if user.tasks %}
+    <div class="tasks-grid">
+        {% for task in user.tasks %}
+            <div class="task {% if task.priority == 'High' %} high-priority
+                           {% elif task.priority == 'Medium' %} medium-priority
+                           {% else %} low-priority {% endif %}">
+                <p>Task ID: {{ task.task_id }}</p>
+                <p>Title: {{ task.title }}</p>
+                <p>Description: {{ task.description }}</p>
+                <p>Priority: {{ task.priority }}</p>
+                <p>Deadline: {{ task.deadline }}</p>
+                <p>Status: {{ task.status }}</p>
+                <p>Created At: {{ task.created_at }}</p>
+                <p>Updated At: {{ task.updated_at }}</p>
+                <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
+                <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No current tasks.</p>
+{% endif %}
+</body>
+</html>

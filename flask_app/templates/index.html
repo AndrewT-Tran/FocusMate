@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Flask App</title>
+        <!-- Include any CSS files here -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+    <div id="root">
+        <div class="music-player">
+            <div class="player-controls">
+                <button id="play-pause-btn">Play</button>
+            </div>
+            <div class="track-info">
+                <p id="track-title">Track Title</p>
+            </div>
+            <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
+        </div>
+    </div> <!-- This is where your React app will be mounted -->
+        <!-- Include the compiled JavaScript bundle here -->
+        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

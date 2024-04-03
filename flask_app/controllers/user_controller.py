@@ -19,8 +19,9 @@ def create_user():
 
 
 @app.route('/')
+@login_required
 def index():
-    return redirect('/login')
+    return redirect("/dashboard")
 
 @app.route('/signup')
 def newUser():

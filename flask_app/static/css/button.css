@@ -1,0 +1,31 @@
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: teal;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    width: 100px; /* Adjust the width value as needed */
+    text-align: center; /* Center the text */
+}
+
+.button:hover {
+    background-color: #048f7f;
+}
+
+.logout-button {
+    background-color: #dc3545; /* Red color for logout button */
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+.button-red {
+    background-color: #dc3545; /* Red color for logout button */
+}
+
+.button-red:hover {
+    background-color: #c82333;
+}

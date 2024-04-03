@@ -1,0 +1,26 @@
+.music-player {
+  max-width: 300px;
+  margin: auto;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #d0dbe5 /* Change the background color here */
+}
+
+.player-controls {
+  text-align: center;
+}
+
+#play-pause-btn {
+  background-color: #394867;
+  color: #048f7f;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#play-pause-btn:hover {
+  background-color: #b3b2ca;
+}
