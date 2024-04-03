@@ -24,3 +24,7 @@ body {
 #play-pause-btn:hover {
   background-color: #b3b2ca;
 }
+.done {
+  text-align: center;
+  margin-top: 20px;
+}

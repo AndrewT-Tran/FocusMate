@@ -98,3 +98,22 @@ def update_task_save():
     # Redirect to a page where the user can see the updated task
     return redirect('/dashboard')
 
+@app.route('/complete/<int:task_id>')
+@login_required
+def mark_task_done(task_id):
+    # Retrieve the task by ID
+    task = Task.get_by_id(task_id)
+    
+    # Update the task status to 'Completed'
+    task.status = 'Completed'
+    Task.update({
+        'task_id': task_id,
+        'title': task.title,
+        'description': task.description,
+        'priority': task.priority,
+        'deadline': task.deadline,
+        'status': task.status
+    })  # Save the changes
+    
+    # Redirect to the dashboard
+    return redirect('/dashboard')

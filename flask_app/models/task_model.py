@@ -89,7 +89,17 @@ class Task:
             WHERE task_id = %(task_id)s
         """
         connectToMySQL("focusmate").query_db(query, data)
-
+        
+    @staticmethod
+    def get_by_id(task_id):
+        data = {'task_id': task_id}
+        query = "SELECT * FROM tasks WHERE task_id = %(task_id)s"
+        result = connectToMySQL("focusmate").query_db(query, data)
+        if result:
+            return Task(result[0])
+        else:
+            return None
+    
     @staticmethod
     def validate(form):
         is_valid = True

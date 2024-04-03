@@ -2,58 +2,85 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
-  }
-  
-  .task {
+}
+
+.task {
     border-radius: 5px;
     padding: 10px;
     transition: background-color 0.3s; /* Add transition for background color */
-  }
-  
-  .task:hover {
+}
+
+.task:hover {
     background-color: rgba(0, 0, 0, 0.1); /* Change the background color on hover */
-  }
-  
-  .task p {
+}
+
+.task p {
     margin: 0;
     padding: 0;
-  }
-  
-  .task a {
+}
+
+.task a {
     margin-top: 5px;
     display: inline-block;
     text-decoration: none;
-  }
-  
-  .task a:hover {
+}
+
+.task a:hover {
     text-decoration: underline;
-  }
-  
-  /* Conditional styling based on priority */
-  .high-priority {
+}
+
+/* Conditional styling based on priority */
+.high-priority {
     background-color: #FFCCCC;
-  }
-  
-  .medium-priority {
+}
+
+.medium-priority {
     background-color: rgb(244, 200, 119);
-  }
-  
-  .low-priority {
+}
+
+.low-priority {
     background-color: #CCFFCC;
-  }
-  
-  /* Add hover animation for tasks with high priority */
-  .high-priority:hover {
+}
+
+/* Add hover animation for tasks with high priority */
+.high-priority:hover {
     background-color: #FFA8A8; /* Change the background color on hover */
-  }
-  
-  /* Add hover animation for tasks with medium priority */
-  .medium-priority:hover {
+}
+
+/* Add hover animation for tasks with medium priority */
+.medium-priority:hover {
     background-color: rgb(244, 180, 100); /* Change the background color on hover */
-  }
-  
-  /* Add hover animation for tasks with low priority */
-  .low-priority:hover {
+}
+
+/* Add hover animation for tasks with low priority */
+.low-priority:hover {
     background-color: #A8FFA8; /* Change the background color on hover */
-  }
-  
+}
+
+
+.completed-task {
+    background-color: rgba(0, 0, 0, 0.1); /* Greyed-out background color */
+    color: #666; /* Text color */
+}
+
+.completed-task:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* Maintain greyed-out background color on hover */
+    cursor: default; /* Disable pointer cursor on hover */
+}
+
+.completed-task a {
+    pointer-events: none; /* Disable link interaction */
+    color: #999; /* Adjust link color */
+}
+
+.completed-task a:hover {
+    text-decoration: none; /* Remove underline on hover */
+    color: #999; /* Adjust link color on hover */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .tasks-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/button.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/task.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
 </head>
 <body>
     <div class="music-player">
@@ -31,28 +32,75 @@
     <h2>Tasks</h2>
     <a href="/add" class="button">Add Task</a>
     <a href="/logout" class="button logout-button">Logout</a>
-    
+
+    <h1>Pending Tasks</h1>
     {% if user.tasks %}
+        <div class="tasks-grid">
+            {% for task in user.tasks %}
+                {% if task.status != 'Completed' %}
+                    <div class="task {% if task.priority == 'High' %} high-priority
+                                   {% elif task.priority == 'Medium' %} medium-priority
+                                   {% else %} low-priority {% endif %}">
+                        <p>Task ID: {{ task.task_id }}</p>
+                        <p>Title: {{ task.title }}</p>
+                        <p>Description: {{ task.description }}</p>
+                        <p>Priority: {{ task.priority }}</p>
+                        <p>Deadline: {{ task.deadline }}</p>
+                        <p>Status: {{ task.status }}</p>
+                        <p>Created At: {{ task.created_at }}</p>
+                        <p>Updated At: {{ task.updated_at }}</p>
+                        <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
+                        <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
+                        <a class="button" href="/complete/{{task.task_id}}">Complete Task</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+    <h1>Working On</h1>
     <div class="tasks-grid">
         {% for task in user.tasks %}
-            <div class="task {% if task.priority == 'High' %} high-priority
-                           {% elif task.priority == 'Medium' %} medium-priority
-                           {% else %} low-priority {% endif %}">
-                <p>Task ID: {{ task.task_id }}</p>
-                <p>Title: {{ task.title }}</p>
-                <p>Description: {{ task.description }}</p>
-                <p>Priority: {{ task.priority }}</p>
-                <p>Deadline: {{ task.deadline }}</p>
-                <p>Status: {{ task.status }}</p>
-                <p>Created At: {{ task.created_at }}</p>
-                <p>Updated At: {{ task.updated_at }}</p>
-                <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
-                <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
-            </div>
+            {% if task.status == 'InProgress' %}
+                <div class="task {% if task.priority == 'High' %} high-priority
+                               {% elif task.priority == 'Medium' %} medium-priority
+                               {% else %} low-priority {% endif %}">
+                    <p>Task ID: {{ task.task_id }}</p>
+                    <p>Title: {{ task.title }}</p>
+                    <p>Description: {{ task.description }}</p>
+                    <p>Priority: {{ task.priority }}</p>
+                    <p>Deadline: {{ task.deadline }}</p>
+                    <p>Status: {{ task.status }}</p>
+                    <p>Created At: {{ task.created_at }}</p>
+                    <p>Updated At: {{ task.updated_at }}</p>
+                    <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
+                    <a class="button" href="/edit/{{task.task_id}}">Edit Task</a>
+                    <a class="button" href="/complete/{{task.task_id}}">Complete Task</a>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
-{% else %}
-    <p>No current tasks.</p>
-{% endif %}
+
+    <h1>Completed</h1>
+    <div class="tasks-grid">
+        {% for task in user.tasks %}
+            {% if task.status == 'Completed' %}
+                <div class="completed-task task">
+                    <p>Task ID: {{ task.task_id }}</p>
+                    <p>Title: {{ task.title }}</p>
+                    <p>Description: {{ task.description }}</p>
+                    <p>Priority: {{ task.priority }}</p>
+                    <p>Deadline: {{ task.deadline }}</p>
+                    <p>Status: {{ task.status }}</p>
+                    <p>Created At: {{ task.created_at }}</p>
+                    <p>Updated At: {{ task.updated_at }}</p>
+                    <a class="button button-red" href="/delete/{{task.task_id}}">Delete Task</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    {% else %}
+    <h1>No pending tasks</h1>
+    {% endif %}
 </body>
 </html>
