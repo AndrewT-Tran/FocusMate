@@ -1,10 +1,10 @@
-**# FocusMate**
+# FocusMate
 
-## Simple Web App to Enhance Productivity
+## A Simple Web App to Boost Productivity
 
-"During my time in a coding bootcamp, we had timed exams and assignments and always found myself losing track of time. Nowadays, I still have the same problem while coding, so here is an app that I personally use. Features will be added as soon as I continue to use and look to make improvements. Feel free to run locally."
+"During my coding bootcamp, I often lost track of time during timed exams and assignments. This challenge persists while coding, so I started using this app. As I continue to use and seek improvements, more features will be added. Feel free to run it locally."
 
-### Tech Used
+### Technologies Used
 
 - Flask
 - Flask APIs
@@ -15,23 +15,27 @@
 ### Installation Guide
 
 1. Install Python dependencies:
-   ```
+
+   ```python
    pipenv install PyMySQL flask flask-bcrypt
    ```
 
-2. Set up Tailwind CSS:
-   - Inside the `flask_app` directory, install Tailwind CSS:
-     ```
+2. Setting up Tailwind CSS:
+   - Within the `flask_app` directory, install Tailwind CSS:
+
+     ```node
      npm install -D tailwindcss
      ```
 
-   - Create a new `tailwind.config` file:
-     ```
+   - Generate a new `tailwind.config` file:
+
+     ```node
      npx tailwind init
      ```
 
-   - Edit the generated `tailwind.config` file to include:
-     ```javascript
+   - Update the generated `tailwind.config` file to include:
+
+     ```js
      module.exports = {
        content: [
          "./templates/**/*.html",
@@ -44,29 +48,31 @@
      }
      ```
 
-   - Create a new folder `static/src/` and add `input.css` with:
+   - Create a `static/src/` folder and add an `input.css` file with:
+
      ```css
      @tailwind base;
      @tailwind components;
      @tailwind utilities;
      ```
 
-   - Compile and watch Tailwind CSS:
-     ```
+   - Compile and monitor Tailwind CSS:
+
+     ```node
      npx tailwindcss -i ./static/src/input.css -o ./static/dist/css/output.css --watch
      ```
 
-3. Include Tailwind CSS in the HTML template:
-   - Add the following line in the header of `index.html`:
+3. Integrating Tailwind CSS into your HTML template:
+   - In the header of `index.html`, insert:
+
      ```html
      <link rel="stylesheet" href="{{ url_for('static', filename='dist/css/output.css') }}">
      ```
 
-### Credits
+### Acknowledgments
 
-We would like to thank [BoxRadio](https://player.boxradio.net/) for providing the music player used in this project.
+We extend our gratitude to [BoxRadio](https://player.boxradio.net/) for providing the music player featured in this project.
 
-- Music Player: [BoxRadio](https://player.boxradio.net/)
+- Music Player Courtesy of [BoxRadio](https://player.boxradio.net/)
 
 ---
-
