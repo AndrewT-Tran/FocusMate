@@ -20,7 +20,25 @@
     text-align: center;
     font-size: 16px;
 }
-
+toggle-button {
+    display: flex;
+    /* Use flexbox */
+    align-items: center;
+    /* Center items vertically */
+    justify-content: center;
+    /* Center items horizontally */
+    padding: 10px 20px;
+    /* Adjust padding */
+    margin: 5px;
+    background-color: teal;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    width: auto;
+    /* Adjust width to fit content */
+    text-align: center;
+    font-size: 16px;
+}
 .button svg,
 .logout-button svg,
 .button-red svg,

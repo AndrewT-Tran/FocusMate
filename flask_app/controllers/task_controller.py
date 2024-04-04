@@ -3,7 +3,7 @@ from flask_app import app
 from flask_app.models.task_model import Task
 from flask_app.models.user_model import User
 from flask_login import login_required, current_user
-from datetime import datetime
+
 
 @app.route('/dashboard')
 @login_required
@@ -11,10 +11,9 @@ def dashboard():
     user_id = current_user.user_id
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
-    now = datetime.now()
-    current_time = now.strftime("%I:%M:%S %p")
+
     
-    return render_template('dashboard.html', user=user, tasks=tasks, current_time=current_time)
+    return render_template('dashboard.html', user=user, tasks=tasks)
 
 
 @app.route('/edit/task/<int:task_id>', methods=['GET', 'POST'])
