@@ -10,7 +10,6 @@ flask_app\config\mysqlconnection.py
 .Python
 build/
 develop-eggs/
-dist/
 downloads/
 eggs/
 .eggs/
