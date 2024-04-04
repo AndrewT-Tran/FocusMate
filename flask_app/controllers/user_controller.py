@@ -28,6 +28,7 @@ def create_user():
         return redirect('/signup')
 
     if not User.validate(form_data):
+        
         return redirect('/signup')
 
     # Hash the password before storing it in the database
@@ -36,7 +37,7 @@ def create_user():
 
     user_id = User.create_user(form_data, hashed_password)
     if user_id:
-        flash("Successfully created account", "success")
+        flash("Successfully created account, please log in", "success")
         return redirect('/login')
     else:
         flash("Failed to create account", "error")

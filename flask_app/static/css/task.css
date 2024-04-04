@@ -14,24 +14,11 @@
     background-color: rgba(0, 0, 0, 0.1); /* Change the background color on hover */
 }
 
-.task p {
-    margin: 0;
-    padding: 0;
-}
 
-.task a {
-    margin-top: 5px;
-    display: inline-block;
-    text-decoration: none;
-}
-
-.task a:hover {
-    text-decoration: underline;
-}
 
 /* Conditional styling based on priority */
 .high-priority {
-    background-color: #FFCCCC;
+    background-color: #FFA8A8;
 }
 
 .medium-priority {

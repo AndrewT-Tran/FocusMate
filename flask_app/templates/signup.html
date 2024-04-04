@@ -3,76 +3,88 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Create User</title>
-    <meta name="description" content="">
+    <title>Sign Up</title>
+    <meta name="description" content="Sign up for Access">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/signup.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
+    
+</head>
 <body>
-    <div class="container">
-        {% if signup_successful %}
-        <script>
-            alert("Successfully created account");
-        </script>
-        {% else %}
-        
-        {% for message in get_flashed_messages(category_filter=['error']) %}
-        <div style="font-weight:bold; font-size: 16px;" class="poppins-regular error">{{ message }}</div>
+    <div class="min-h-screen bg-gray-100 flex flex-col justify-center sm:py-12">
 
-        {% endfor %}
-        {% endif %}
-        <h1 class="poppins-semibold">Create User</h1>
-        <form method="POST" action="/create/user" class="signup-form">
-            <div>
+        <div class="p-10 xs:p-0 mx-auto md:w-full md:max-w-md">
+          <h1 class="font-bold text-center text-2xl mb-5">Your Logo</h1>  
+          <div class="bg-white shadow w-full rounded-lg divide-y divide-gray-200">
+            <div class="px-5 py-7">
+              <h3 class="font-semibold text-2xl text-center m-5">Create User</h3>
+              
+              {% if signup_successful %}
+                <script>
+                    alert("Successfully created account");
+                </script>
+   
+              {% endif %}
+              
+              <form method="POST" action="/create/user" class="signup-form">
                 {% for message in get_flashed_messages(category_filter=['first_name_error']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="first_name" class="poppins-regular">First Name:</label>
-                <input type="text" id="first_name" name="first_name" required>
+                     <p style="font-weight:bold; color:red;" class="mb-4 poppins-regular">{{ message }}</p>
+                 {% endfor %}
+                <div class="mb-5 flex justify-between">
+                  <div style="width: 48%;"> <!-- Adjust the width as needed -->
+                    <label for="first_name" class="font-semibold text-sm text-gray-600 pb-1 block">First Name:</label>
+                    <input type="text" id="first_name" name="first_name" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                  </div>
+                  <div style="width: 48%;"> <!-- Adjust the width as needed -->
+                    {% for message in get_flashed_messages(category_filter=['last_name_error']) %}
+                      <p class="text-red-700 mb-4">{{ message }}</p>
+                    {% endfor %}
+                    <label for="last_name" class="font-semibold text-sm text-gray-600 pb-1 block">Last Name:</label>
+                    <input type="text" id="last_name" name="last_name" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                  </div>
+                </div>
+                <div class="mb-5">
+                  {% for message in get_flashed_messages(category_filter=['email_error', 'email']) %}
+                    <p class="text-red-700 mb-4">{{ message }}</p>
+                  {% endfor %}
+                  <label for="email" class="font-semibold text-sm text-gray-600 pb-1 block">Email:</label>
+                  <input type="email" id="email" name="email" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                </div>
+                <div class="mb-5">
+                  {% for message in get_flashed_messages(category_filter=['username_error']) %}
+                    <p class="text-red-700 mb-4">{{ message }}</p>
+                  {% endfor %}
+                  <label for="username" class="font-semibold text-sm text-gray-600 pb-1 block">Username:</label>
+                  <input type="text" id="username" name="username" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                </div>
+                <div class="mb-5">
+                  {% for message in get_flashed_messages(category_filter=['password_error']) %}
+                    <p class="text-red-700 mb-4">{{ message }}</p>
+                  {% endfor %}
+                  <label for="password" class="font-semibold text-sm text-gray-600 pb-1 block">Password:</label>
+                  <input type="password" id="password" name="password" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                </div>
+                <div class="mb-5">
+                  {% for message in get_flashed_messages(category_filter=['confirm_password_error']) %}
+                    <p class="text-red-800">{{ message }}</p>
+                  {% endfor %}
+                  <label for="confirm_password" class="font-semibold text-sm text-gray-600 pb-1 block">Confirm Password:</label>
+                  <input type="password" id="confirm_password" name="confirm_password" required class="border rounded-lg px-3 py-2 mt-1 text-md w-full">
+                </div>
+                <div class="mb-5">
+                  <input type="submit" value="Sign Up" class="transition duration-200 bg-red-500 hover:bg-red-600 focus:bg-red-700 focus:shadow-sm focus:ring-4 focus:ring-red-500 focus:ring-opacity-50 text-white w-full py-2.5 rounded-lg text-md shadow-sm hover:shadow-md font-semibold text-center inline-block">
+                </div>
+                <div class="mt-6 text-center">
+                  <a href="/" class="text-lg text-slate-900 hover:text-red-700 underline">Back</a>
+                </div>
+              </form>
             </div>
-            <div>
-                {% for message in get_flashed_messages(category_filter=['last_name_error']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="last_name" class="poppins-regular">Last Name:</label>
-                <input type="text" id="last_name" name="last_name" required>
-            </div>
-            <div>
-                {% for message in get_flashed_messages(category_filter=['email_error', 'email']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="email" class="poppins-regular">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div>
-                {% for message in get_flashed_messages(category_filter=['username_error']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="username" class="poppins-regular">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                {% for message in get_flashed_messages(category_filter=['password_error']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="password" class="poppins-regular">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                {% for message in get_flashed_messages(category_filter=['confirm_password_error']) %}
-                    <p style="font-weight:bold; color:red;" class="poppins-regular">{{ message }}</p>
-                {% endfor %}
-                <label for="confirm_password" class="poppins-regular">Confirm Password:</label>
-                <input type="password" id="confirm_password" name="confirm_password" required>
-            </div>
-            <div>
-                <input type="submit" value="Sign Up" class="poppins-semibold">
-            </div>
-        </form>
-    </div>
+          </div>
+        </div>
+      </div>
 </body>
 </html>

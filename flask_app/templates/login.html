@@ -2,9 +2,9 @@
 <html>
 <head>
     <title>Login</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
   
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font.css') }}">
+    <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -12,32 +12,38 @@
 
 
 <body>
-    <div class="container">
-        <h1 class="poppins-semibold">Login</h1>
+   <!-- component -->
+<div class="min-h-screen bg-gray-50 flex flex-col justify-center items-center pt-6 sm:pt-0">
+    <div class="w-full sm:max-w-md p-5 mx-auto">
 
-        {% for message in get_flashed_messages(category_filter=['success']) %}
-            <p style="font-weight:bold; color:green;" class="success poppins-regular">{{ message }}</p>
-        {% endfor %}
+      <h2 class="mb-12 text-center text-5xl font-extrabold">Welcome.</h2>
+        <h3 class="mb-12 text-center text-2xl font-extrabold">Login to your account</h3>
+{# Validations #}
+      {% for message in get_flashed_messages(category_filter=['success']) %}
+      <p style="font-weight:bold; color:green;" class="Poppins success mb-3 poppins-regular">{{ message }}</p>
+  {% endfor %}
 
-        {% for message in get_flashed_messages(category_filter=['error']) %}
-            <p style="font-weight:bold; color:red;" class="error poppins-regular">{{ message }}</p>
-        {% endfor %}
-
+  {% for message in get_flashed_messages(category_filter=['error']) %}
+      <p style="font-weight:bold; color:red;" class="error mb-3 poppins-regular">{{ message }}</p>
+  {% endfor %}
 
         <form method="POST" action="/login" class="login-form">
-            <div>
-                <label for="username" class="poppins-regular">Username:</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div>
-                <label for="password" class="poppins-regular">Password:</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div>
-                <input type="submit" value="Login" class="poppins-semibold">
-            </div>
+          <div class="mb-4">
+            <label class="block mb-1" for="username">Username</label>
+            <input type="text" id="username" name="username" class="py-2 px-3 border border-gray-300 focus:border-red-300 focus:outline-none focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
+          </div>
+          <div class="mb-4">
+            <label class="block mb-1" for="password">Password</label>
+            <input id="password" type="password" name="password" class="py-2 px-3 border border-gray-300 focus:border-red-300 focus:outline-none focus:ring focus:ring-red-200 focus:ring-opacity-50 rounded-md shadow-sm disabled:bg-gray-100 mt-1 block w-full" />
+          </div>
+          <div class="mt-6">
+            <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold capitalize text-white hover:bg-red-700 active:bg-red-700 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 disabled:opacity-25 transition">Sign In</button>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="/signup"  class="text-lg text-slate-900 hover:text-red-700 underline">Sign up for an account</a>
+          </div>
         </form>
-        <p class="poppins-regular">Don't have an account? <a href="/signup">Register</a></p>
     </div>
+</div>
 </body>
 </html>

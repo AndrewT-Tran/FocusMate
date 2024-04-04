@@ -13,10 +13,10 @@ body {
 }
 
 #play-pause-btn {
-  background-color: #394867;
-  color: #048f7f;
+
+  color: #FFF;
   border: none;
-  padding: 5px 15px;
+  padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
 }
@@ -27,4 +27,8 @@ body {
 .done {
   text-align: center;
   margin-top: 20px;
+}
+
+#audio-player {
+  display: none;
 }

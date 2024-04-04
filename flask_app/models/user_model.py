@@ -2,6 +2,7 @@ from flask_bcrypt import Bcrypt
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app.models.task_model import Task
 from flask_login import UserMixin
+from flask import flash
 import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -63,16 +64,19 @@ class User(UserMixin):
     def validate(data):
         is_valid = True
         if len(data['first_name']) < 2:
+            flash("Whats your real name?", "first_name_error")
             is_valid = False
         if len(data['last_name']) < 2:
             is_valid = False
         if not EMAIL_REGEX.match(data['email']):
             is_valid = False
-        if len(data['username']) < 2:
+        if len(data['username']) < 1:
             is_valid = False
         if len(data['password']) < 8:
+            flash("Password must be at least 8 characters", "password_error")
             is_valid = False
         if data['password'] != data['confirm_password']:
+            flash("Passwords do not match", "confirm_password_error")
             is_valid = False
         return is_valid
 
