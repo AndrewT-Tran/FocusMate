@@ -5,7 +5,8 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #d0dbe5 /* Change the background color here */
+  background-color: #d0dbe5
+    /* Change the background color here */
 }
 
 .player-controls {
@@ -24,6 +25,7 @@ body {
 #play-pause-btn:hover {
   background-color: #b3b2ca;
 }
+
 .done {
   text-align: center;
   margin-top: 20px;
@@ -31,4 +33,62 @@ body {
 
 #audio-player {
   display: none;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .flex,
+  .grid {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .tasks-grid,
+  .grid-cols-1,
+  .grid-cols-2,
+  .grid-cols-4 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+/* Ensures buttons with icons are aligned inline and centered vertically with the text */
+.row-auto a {
+  display: inline-flex;
+  /* Aligns the button content inline and centers them */
+  align-items: center;
+  /* Centers the items vertically */
+  justify-content: center;
+  /* Centers the content horizontally */
+}
+
+/* Adjusts the size of the SVG icons */
+.svg-icon {
+  width: 16px;
+  /* Adjust the width as needed */
+  height: 16px;
+  /* Adjust the height to match the width for a consistent aspect ratio */
+
+}
+
+.svg-icon-text {
+  width: 16px;
+  /* Adjust the width as needed */
+  height: 16px;
+  /* Adjust the height to match the width for a consistent aspect ratio */
+  margin-right: 8px;
+
+  /* Adds some space between the icon and the text */
+}
+
+/* Styling for inline buttons with icons */
+.button-inline {
+  display: inline-flex;
+  /* Aligns the button content inline and centers them */
+  align-items: center;
+  /* Centers the items vertically */
+  justify-content: center;
+  /* Centers the content horizontally */
 }
