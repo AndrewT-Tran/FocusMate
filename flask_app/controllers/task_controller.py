@@ -12,7 +12,6 @@ def dashboard():
     user = User.get_by_id(user_id)
     tasks = Task.get_by_user_id(user_id)
 
-    
     return render_template('dashboard.html', user=user, tasks=tasks)
 
 
@@ -115,7 +114,12 @@ def mark_pending(task_id):
     return redirect('/dashboard')
 
 
+@app.route('/test')
+def testing():
+    return render_template('index.html')
+
 # Task Controller
+
 
 @app.route('/update_priority/<int:task_id>', methods=['POST'])
 @login_required

@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Your Flask App</title>
-        <!-- Include any CSS files here -->
-        <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-</head>
-<body>
-    <div id="root">
-        <div class="music-player">
-            <div class="player-controls">
-                <button id="play-pause-btn">Play</button>
-            </div>
-            <div class="track-info">
-                <p id="track-title">Track Title</p>
-            </div>
-            <audio id="audio-player" src="https://play.streamafrica.net/lofiradio" controls></audio>
-        </div>
-    </div> 
-    <!-- Include any JS files here -->
-        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Your Flask App</title>
+		<!-- Include any CSS files here -->
+		<link
+			rel="stylesheet"
+			href="{{url_for('static',filename='dist/css/output.css')}}" />
+		<link
+			rel="stylesheet"
+			href="{{url_for('static',filename='css/digitalclock.css')}}" />
+	</head>
+	<body>
+		<div class="hero">
+			<div class="box">
+				<style></style>
+				<div class="clock">
+					<span id="hrs">00</span>
+					<span>:</span>
+					<span id="min">00</span>
+					<span>:</span>
+					<span id="sec">00</span>
+				</div>
+			</div>
+		</div>
+		<!-- Include any JS files here -->
+		<script src="{{ url_for('static', filename='js/digitalclock.js') }}"></script>
+	</body>
 </html>
