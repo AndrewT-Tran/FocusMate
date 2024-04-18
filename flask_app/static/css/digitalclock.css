@@ -93,14 +93,12 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(
-    from var(--a),
-    #0f0,
-    #ff0,
-    #0ff,
-    #f0f,
-    #0ff
-  );
+  background: repeating-conic-gradient(from var(--a),
+      #0f0,
+      #ff0,
+      #0ff,
+      #f0f,
+      #0ff);
   border-radius: 20px;
   animation: rotate 6s linear infinite;
 }
@@ -109,14 +107,12 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(
-    from var(--a),
-    #0f0,
-    #ff0,
-    #0ff,
-    #f0f,
-    #0ff
-  );
+  background: repeating-conic-gradient(from var(--a),
+      #0f0,
+      #ff0,
+      #0ff,
+      #f0f,
+      #0ff);
   border-radius: 20px;
   animation: rotate 4s linear infinite;
   filter: blur(40px);

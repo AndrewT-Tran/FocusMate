@@ -1,7 +1,123 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+}
+
+.poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+}
+
+.poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+#task_top,
+#working_on,
+#completed_tasks {
+    height: 100vh;
+    /* Set the height to 100vh for full screen */
+}
+
+#play-pause-btn {
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#play-pause-btn.playing {
+    background-color: red;
+    /* Change this to the color you prefer for playing */
+}
+
+#play-pause-btn.paused {
+    background-color: green;
+    /* Change this to the color you prefer for paused */
+}
+
+.done {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Ensures buttons with icons are aligned inline and centered vertically with the text */
+.row-auto a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Adjusts the size of the SVG icons */
+.svg-icon {
+    width: 16px;
+    height: 16px;
+}
+
+.svg-icon-text {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+}
+
+/* Styling for inline buttons with icons */
+.button-inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
-
-
+/* signup */

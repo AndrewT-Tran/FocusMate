@@ -58,19 +58,19 @@
                 {# Welcome messages #}
                 <div class="container mx-auto flex flex-col justify-center items-center px-4"></div>
                 <h1 class="text-5xl text-stone-100 font-bold p-20">
-                    Let's Get to Work 
+                    Let's Get to Work
                     <span class="text-6xl font-extrabold text-amber-500">{{ user.first_name }}</span> !
                 </h1>
 
 
                         <div class="flex justify-center items-center">
-                          
+
                         <h2 class="text-3xl text-slate-200 font-bold p-20">You have <span class="text-4xl text-rose-700">{{
                             user.tasks|selectattr('status', 'equalto', 'Pending')|list|length }}</span> tasks <span class="text-rose-600 font-extrabold italic">left </span>to complete.</h2>
-                        
+
                             <h2 class="text-3xl text-slate-200 font-bold p-20">You have <span class="text-4xl text-amber-500">{{
                                 user.tasks|selectattr('status', 'equalto', 'InProgress')|list|length }}</span> tasks <span class="text-green-500 font-light italic">in progress</span>.</h2>
-                        
+
 </div>
 
 
@@ -158,7 +158,7 @@
 
 
                 <!-- Task Cards -->
-        
+
                     <div class="container px-4 mx-auto">
                         <div class="flex justify-center mb-6 md:mb-12">
                             <div class="max-w-lg text-center">
@@ -200,7 +200,7 @@
 
 
                             <p class="my-5 text-stone-300">{{ task.description }}</p>
-                 
+
                             <p>Status: {{ task.status }}</p>
                             <p class="mt-4">Deadline: {{ task.deadline }}</p>
                             <p class="mt-4">Created At: {{ task.created_at }}</p>
@@ -244,7 +244,7 @@
         </div>
         </section>
 
-        
+
         <!-- Working On Section -->
         <div id="working-on" class="container px-4 mx-auto">
             <div class="flex justify-center mb-6 md:mb-12">
