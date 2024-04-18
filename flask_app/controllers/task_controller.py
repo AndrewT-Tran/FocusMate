@@ -165,7 +165,7 @@ def update_priority(task_id):
         flash("Task not found", "error")
 
     # Redirect back to the dashboard
-    return redirect('/dashboard')
+    return redirect(url_for('dashboard') + '#working-on')
 
 @app.route('/clear_tasks/<int:user_id>')
 @login_required

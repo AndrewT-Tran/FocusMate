@@ -1,25 +1,44 @@
 #task_top, #working_on, #completed_tasks {
-    height: 100vh; /* Set the height to 100vh for full screen */
-  }
-
-.tasks-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    height: 100vh;
 }
+
+
+@media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+  
+    .flex,
+    .grid {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .tasks-grid,
+    .grid-cols-1,
+    .grid-cols-2,
+    .grid-cols-4 {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  }
+  
 
 .task {
     border-radius: 5px;
     color: azure;
     padding: 10px;
-    transition: background-color 0.3s; /* Add transition for background color */
-}
+    transition: background-color 0.3s;
+    /* Ensure all cards have the same height */
+    min-height: 200px;
 
+}
+.card-content .p {
+    color:red,
+
+}
 .task:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* Change the background color on hover */
+    background-color: rgba(0, 0, 0, 0.1);
 }
-
-
 
 /* Conditional styling based on priority */
 .high-priority {
@@ -36,38 +55,37 @@
 
 /* Add hover animation for tasks with high priority */
 .high-priority:hover {
-    background-color: #FFA8A8; /* Change the background color on hover */
+    background-color: #FFA8A8;
 }
 
 /* Add hover animation for tasks with medium priority */
 .medium-priority:hover {
-    background-color: rgb(244, 180, 100); /* Change the background color on hover */
+    background-color: rgb(244, 180, 100);
 }
 
 /* Add hover animation for tasks with low priority */
 .low-priority:hover {
-    background-color: #A8FFA8; /* Change the background color on hover */
+    background-color: #A8FFA8;
 }
 
-
 .completed-task {
-    background-color: rgba(0, 0, 0, 0.1); /* Greyed-out background color */
-    color: #666; /* Text color */
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #666;
 }
 
 .completed-task:hover {
-    background-color: rgba(0, 0, 0, 0.1); /* Maintain greyed-out background color on hover */
-    cursor: default; /* Disable pointer cursor on hover */
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: default;
 }
 
 .completed-task a {
-    pointer-events: none; /* Disable link interaction */
-    color: #999; /* Adjust link color */
+    pointer-events: none;
+    color: #999;
 }
 
 .completed-task a:hover {
-    text-decoration: none; /* Remove underline on hover */
-    color: #999; /* Adjust link color on hover */
+    text-decoration: none;
+    color: #999;
 }
 
 /* Responsive adjustments */
