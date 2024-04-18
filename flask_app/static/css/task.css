@@ -33,48 +33,57 @@
     border-radius: 5px;
     color: azure;
     padding: 10px;
-    font-size: 12px;
+    font-size: 1rem; /* Set base font size */
     transition: background-color 0.3s;
     /* Ensure all cards have the same height */
     min-height: 200px;
-
 }
 
 .card-content .p {
-    color: red,
-
+    color: red; /* Note the missing comma after "red" */
+    font-size: 0.9rem; /* Adjust the font size of the content */
 }
 
+/* Define media query for smaller screens */
+@media (max-width: 768px) {
+    .task {
+        font-size: 0.8rem; /* Adjust font size for smaller screens */
+    }
+
+    .card-content .p {
+        font-size: 0.8rem; /* Adjust font size of content for smaller screens */
+    }
+}
 .task:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Conditional styling based on priority */
 .high-priority {
-    background-color: #FFA8A8;
+    background-color:#ef4444
 }
 
 .medium-priority {
-    background-color: rgb(244, 200, 119);
+    background-color: #facc15
 }
 
 .low-priority {
-    background-color: #CCFFCC;
+    background-color: #22c55e
 }
 
 /* Add hover animation for tasks with high priority */
 .high-priority:hover {
-    background-color: #FFA8A8;
+    background-color: #f87171;
 }
 
 /* Add hover animation for tasks with medium priority */
 .medium-priority:hover {
-    background-color: rgb(244, 180, 100);
+    background-color:#fef08a;
 }
 
 /* Add hover animation for tasks with low priority */
 .low-priority:hover {
-    background-color: #A8FFA8;
+    background-color:#86efac;
 }
 
 .completed-task {

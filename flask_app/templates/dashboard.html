@@ -6,7 +6,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ user.first_name }}'s Tasks</title>
         <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
         <link rel="stylesheet" href="{{ url_for('static', filename='css/task.css') }}">
         <link rel="stylesheet" href="{{url_for('static',filename='css/digitalclock.css')}}" />
 
@@ -19,26 +18,23 @@
 
         <!-- Navbar -->
         <div class="bg-gray-800 text-white py-3">
-            <div class="container mx-auto flex justify-between items-center px-4">
-                <h1 class="text-2xl font-semibold">Welcome, {{ user.first_name }}!</h1>
-                <ul class="flex gap-8 text-base">
+            <div class="container mx-auto my-5 flex justify-between items-center px-4">
+                <h1 class="text-3xl poppins-bold">Welcome back, {{ user.first_name }}!</h1>
+                <ul class="flex gap-8 text-xl poppins-medium">
                     <li>
-                        <a href="/user/profile" class="button profile-button flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M16 9a4 4 0 1 1-8 0a4 4 0 0 1 8 0Zm-2 0a2 2 0 1 1-4 0a2 2 0 0 1 4 0Z" />
-                                <path
-                                    d="M12 1C5.925 1 1 5.925 1 12s4.925 11 11 11s11-4.925 11-11S18.075 1 12 1ZM3 12c0 2.09.713 4.014 1.908 5.542A8.986 8.986 0 0 1 12.065 14a8.984 8.984 0 0 1 7.092 3.458A9 9 0 1 0 3 12Zm9 9a8.963 8.963 0 0 1-5.672-2.012A6.992 6.992 0 0 1 12.065 16a6.991 6.991 0 0 1 5.689 2.92A8.964 8.964 0 0 1 12 21Z" />
+                        <a href="/user/profile" class="hover:animate-pulse button-inline flex text-lg items-center hover:text-sky-700">
+                            <svg xmlns="http://www.w3.org/2000/svg"class="h-6 w-6 mr-2 hover:animate-pulse text-sky-500" width="24" height="24"  viewBox="0 0 24 24">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                                    <path d="M18 20a6 6 0 0 0-12 0"/>
+                                    <circle cx="12" cy="10" r="4"/>
+                                    <circle cx="12" cy="12" r="10"/>
+                                </g>
                             </svg>Profile
                         </a>
                     </li>
                     <li>
-                        <a href="/logout" class="button logout-button flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path fill="currentColor"
-                                    d="M512 1024q-139 0-257-68.5T68.5 769T0 512q0-97 34.5-185T132 170q3-3 11.5-12t14-14.5t15-10.5t19.5-5q26 0 45 19t19 45q0 16-3.5 28t-7.5 16l-3 5q-54 53-84 123t-30 148q0 104 51.5 192.5t140 140T512 896t192.5-51.5t140-140T896 512q0-78-30-148.5T783 240q-15-15-15-48q0-26 19-45t45-19q7 0 13.5 2t10.5 4t10.5 8t8.5 8.5t9 10.5t8 9q63 69 97.5 157t34.5 185q0 104-40.5 199t-109 163.5t-163.5 109t-199 40.5zm0-512q-27 0-45.5-18.5T448 448V64q0-27 19-45.5T512.5 0t45 18.5T576 64v384q0 27-18.5 45.5T512 512z" />
-                            </svg>Logout
+                        <a href="/logout" class="hover:animate-bounce button-inline logout-button text-lg flex items-center hover:text-red-600">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2  text-red-700" width="24" height="24"  stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor"><path d="M8 9v-4l8 7-8 7v-4h-8v-6h8zm6-7c-1.787 0-3.46.474-4.911 1.295l.228.2 1.395 1.221c1.004-.456 2.115-.716 3.288-.716 4.411 0 8 3.589 8 8s-3.589 8-8 8c-1.173 0-2.284-.26-3.288-.715l-1.395 1.221-.228.2c1.451.82 3.124 1.294 4.911 1.294 5.522 0 10-4.477 10-10s-4.478-10-10-10z"/></svg>Logout
                         </a>
                     </li>
                 </ul>
@@ -269,10 +265,12 @@
                         <div id="card-content" class="bg-slate-900/80 dark:bg-slate-800 shadow-xl rounded-xl hover:-translate-y-1 duration-500 p-6 lg:p-8">
                             {# Card Content #}
                             <h4 class="text-xl font-medium mb-1">{{ task.title }}</h4>
-                            <p class="">Priority:
+                            
+                            <h4 class="text-left poppins-medium">Priority:
+                            </h4>
                             <form method="POST" action="/update_priority/{{ task.task_id }}"
                                 id="priority-form-{{ task.task_id }}">
-                                <div class="flex justify-center">
+                                <div class="flex justify-center gap-2">
                                     <input type="radio" id="high-priority-{{ task.task_id }}" name="priority"
                                         value="High" {% if task.priority=='High' %} checked {% endif %}>
                                     <label for="high-priority-{{ task.task_id }}">High</label>
@@ -283,15 +281,20 @@
                                         {% if task.priority=='Low' %} checked {% endif %}>
                                     <label for="low-priority-{{ task.task_id }}">Low</label>
                                 </div>
+
+
                                 <button type="submit"
-                                    class="button-inline  bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">Update
+                                    class="button-inline my-2 bg-sky-500 hover:bg-sky-700 text-white py-1 px-2 rounded">Update
                                     Priority</button>
                             </form>
-                            </p>
+                            </h4>
+                            <p class="text-left poppins-medium">Description:</p>
                             <p class="opacity-75">{{ task.description }}</p>
-                            <p class="mt-4">Deadline: {{ task.deadline }}</p>
-                            <p>Status: {{ task.status }}</p>
-                            <p>Created At: {{ task.created_at }}</p>
+                            <p class="text-left poppins-medium">Deadline:</p>
+                            <p class="poppins-semibold"> {{ task.deadline.strftime('%b %d, %Y ') }}</p>
+             
+                            <p class="text-left poppins-medium">Crated At:</p>
+                            <p class="poppins-semibold"> {{ task.created_at.strftime('%b %d, %Y ') }}</p>
 
                             <div class="mt-6">
                                 <a href="/edit/task/{{ task.task_id }}"
@@ -357,19 +360,21 @@
     </div>
     <div class="flex justify-center mb-6"> <!-- Center the Clear All button -->
         <a href="/clear_tasks/{{ user.user_id }}"
-            class="button-inline  bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
+            class="button-inline  bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded">
             Clear All
         </a>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center pt-6">
         {% for task in user.tasks %}
             {% if task.status == 'Completed' %}
-                <div class="w-full bg-gray-700 text-stone-400/50">
+                <div class="w-full poppins-regular  rounded-lg bg-gray-800 text-stone-400/50">
                     <div class="text-center p-5">
                         <p>Title: {{ task.title }}</p>
                         <p>Description: {{ task.description }}</p>
                         <p>Status: {{ task.status }}</p>
-                        {# <p>Created At: {{ task.created_at }}</p> #}
+                        <p>Created At: {{ task.created_at.strftime('%b %d, %Y ') }}</p>
+                        <p>Completed: </p>
+                        <p class="text-gray-50 poppins-light">{{ task.updated_at.strftime('%b %d, %Y, %I:%M %p') }}</p>
                     </div>
                 </div>
             {% endif %}

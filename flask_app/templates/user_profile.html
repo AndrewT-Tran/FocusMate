@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{user.first_name}} Profile</title>
+    <title>{{ user.first_name }}'s Profile</title>
     <link rel="stylesheet" href="{{url_for('static',filename='dist/css/output.css')}}">
 </head>
-<body>
-    <h1 class="text-amber-500">User Profile</h1>
-    <p>Name: {{ user.first_name }} {{ user.last_name }}</p>
-    <p>Email: {{ user.email }}</p>
-    <p>Created At: {{ user.created_at.strftime('%b %d, %Y %I:%M %p') }}</p>
+<body class="bg-gray-900 flex justify-center items-center h-screen">
+    <div class="max-w-md bg-gray-200 rounded-lg shadow-lg  p-6">
+        <h1 class="text-3xl poppins-extrabold text-cyan-600 mb-4">{{ user.first_name }}'s Profile</h1>
+        <hr class="mb-4">
+        <div class="flex-col text-lg poppins-regular">
+            <img src='https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShortWaved&accessoriesType=Blank&hairColor=BrownDark&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Default&eyebrowType=Default&mouthType=Default&skinColor=Light'
+            alt="{{ user.first_name }}" class="w-32 h-32 rounded-full mx-auto mb-4"/>
+        <p class="text-gray-900"><span class="text-slate-800 font-bold">ID: </span>{{ user.user_id }}</p>
+        <p class="text-gray-900"><span class="text-slate-800 font-bold">Name: </span> {{ user.first_name }} {{ user.last_name }}</p>
+        <p class="text-gray-900"><span class="text-slate-800 font-bold">Username: </span>{{ user.username }}</p>
+        <p class="text-gray-900"><span class="text-slate-800 font-bold">Email: </span> {{ user.email }}</p>
+        <p class="text-gray-900"><span class="text-slate-800 font-bold">Member Since: </span> {{ user.created_at.strftime('%b %d, %Y ') }}</p>
+    </hr>
+</div>
+<hr class="mt-4">
+<a href="/" class="mt-4 block
+text-center text-lg text-red-600 hover:text-red-700 poppins-bold">Home</a>
+</hr>
+<hr class="mt-4">
+<a href="/logout" class="mt-4 block text-center text-lg poppins-bold text-red-600 hover:text-red-900">Logout</a>
+</hr>
 
+
+
+    </div>
 </body>
 </html>

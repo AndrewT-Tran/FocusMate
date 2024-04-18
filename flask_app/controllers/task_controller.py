@@ -116,7 +116,7 @@ def mark_pending(task_id):
         flash("Task marked as In Progress", "success")
     else:
         flash("Task not found", "error")
-    return redirect(url_for('dashboard') + '#main')  # Redirect to the working-on section
+    return redirect(url_for('dashboard') + '#working-on')  # Redirect to the working-on section
 
 
 
