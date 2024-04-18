@@ -5,13 +5,17 @@
   box-sizing: border-box;
 }
 
+input:checked~.dot {
+  transform: translateX(100%);
+}
+
 .hero {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh; /* Set the height to 100vh for full screen */
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2f363e;
+  flex-direction: column;
   position: relative;
 }
 
@@ -30,7 +34,7 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(40px);
-  color: #6e7f92f6;
+  color: #fffffff6;
   z-index: 10;
 }
 
@@ -71,7 +75,7 @@
   margin-bottom: -10px;
 }
 
-/*------Anemated Border---------*/
+/*------Animated Border---------*/
 .box::before {
   content: "";
   position: absolute;
@@ -105,7 +109,7 @@
 .box style {
   position: absolute;
   inset: 4px;
-  background: #2f363e;
+  background: #242d37;
   border-radius: 16px;
   color: #ff0;
   font-size: 20px;

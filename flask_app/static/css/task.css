@@ -1,3 +1,7 @@
+#task_top, #working_on, #completed_tasks {
+    height: 100vh; /* Set the height to 100vh for full screen */
+  }
+
 .tasks-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -6,6 +10,7 @@
 
 .task {
     border-radius: 5px;
+    color: azure;
     padding: 10px;
     transition: background-color 0.3s; /* Add transition for background color */
 }

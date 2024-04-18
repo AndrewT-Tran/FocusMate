@@ -1,17 +1,3 @@
-.music-player {
-  max-width: 300px;
-  margin: auto;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #d0dbe5
-    /* Change the background color here */
-}
-
-.player-controls {
-  text-align: center;
-}
 
 #play-pause-btn {
 
@@ -31,9 +17,7 @@ body {
   margin-top: 20px;
 }
 
-#audio-player {
-  display: none;
-}
+
 
 @media (max-width: 768px) {
   .container {

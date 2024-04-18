@@ -62,6 +62,19 @@ class Task:
         WHERE task_id = %(task_id)s
         """
         connectToMySQL("focusmate").query_db(query, data)
+    
+    @classmethod
+    def delete_completed_tasks(cls, user_id):
+        data = {
+            'user_id': user_id,
+            'status': 'Completed'  # Ensure the status matches exactly
+        }
+        query = """
+        DELETE FROM tasks
+        WHERE user_id = %(user_id)s AND status = %(status)s
+        """
+        connectToMySQL("focusmate").query_db(query, data)
+
 
     @classmethod
     def get_one(cls, task_id):

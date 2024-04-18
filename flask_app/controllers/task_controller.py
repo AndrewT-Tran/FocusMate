@@ -1,4 +1,4 @@
-from flask import render_template, redirect, request, flash
+from flask import render_template, redirect, request, flash, url_for
 from flask_app import app
 from flask_app.models.task_model import Task
 from flask_app.models.user_model import User
@@ -61,13 +61,20 @@ def delete_task(task_id):
     return redirect('/dashboard')
 
 
-@app.route('/complete/<int:task_id>')
+@app.route('/mark_completed/<int:task_id>')
 @login_required
 def complete_task(task_id):
     task = Task.get_by_id(task_id)
     if task:
         task.status = 'Completed'
-        Task.update(task_id, task)  # Update the task
+        Task.update({
+                'task_id': task_id,
+                'title': task.title,
+                'description': task.description,
+                'priority': task.priority,
+                'deadline': task.deadline,
+                'status': task.status
+            })
         flash("Task marked as completed", "success")
     else:
         flash("Task not found", "error")
@@ -94,7 +101,7 @@ def mark_in_progress(task_id):
     return redirect('/dashboard')
 
 
-@app.route('/mark_pending/<int:task_id>')
+@app.route('/mark_pending/<int:task_id>', methods=['GET'])
 @login_required
 def mark_pending(task_id):
     task = Task.get_by_id(task_id)
@@ -111,7 +118,8 @@ def mark_pending(task_id):
         flash("Task marked as In Progress", "success")
     else:
         flash("Task not found", "error")
-    return redirect('/dashboard')
+    return redirect(url_for('dashboard') + '#working-on')  # Redirect to the working-on section
+
 
 
 @app.route('/test')
@@ -158,3 +166,10 @@ def update_priority(task_id):
 
     # Redirect back to the dashboard
     return redirect('/dashboard')
+
+@app.route('/clear_tasks/<int:user_id>')
+@login_required
+def delete_completed_tasks(user_id):
+    Task.delete_completed_tasks(user_id)
+    flash("Completed tasks deleted successfully", "success")
+    return redirect(url_for('dashboard') + '#working-on')
