@@ -17,7 +17,6 @@ input:checked ~ .dot {
   align-items: center;
   justify-content: center;
   gap: 10px;
-
 }
 
 .hero {
@@ -38,6 +37,8 @@ input:checked ~ .dot {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
 }
 
 .clock {
@@ -45,7 +46,7 @@ input:checked ~ .dot {
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(40px);
+  backdrop-filter: blur(50px);
   color: #fffffff6;
   z-index: 10;
 }
@@ -92,12 +93,14 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(from var(--a),
-      #0f0,
-      #ff0,
-      #0ff,
-      #f0f,
-      #0ff);
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
   border-radius: 20px;
   animation: rotate 6s linear infinite;
 }
@@ -106,12 +109,14 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(from var(--a),
-      #0f0,
-      #ff0,
-      #0ff,
-      #f0f,
-      #0ff);
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
   border-radius: 20px;
   animation: rotate 4s linear infinite;
   filter: blur(40px);

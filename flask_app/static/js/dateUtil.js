@@ -1,4 +1,6 @@
-function formatDate(date) {
-	const options = { month: "long", day: "numeric", year: "numeric" };
-	return new Date(date).toLocaleDateString(undefined, options);
+// Function to format date as "Month day, year"
+function formatDate(dateString) {
+	const options = { month: 'long', day: 'numeric', year: 'numeric' };
+	const date = new Date(dateString);
+	return date.toLocaleDateString('en-US', options);
 }

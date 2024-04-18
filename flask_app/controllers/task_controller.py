@@ -50,8 +50,7 @@ def create_task():
 
     Task.add_task(form_data)
     flash("Task added successfully", "success")
-    return redirect('/dashboard')
-
+    return redirect(url_for('dashboard') + '#pending-tasks')
 
 @app.route('/delete/<int:task_id>')
 @login_required
@@ -80,7 +79,6 @@ def complete_task(task_id):
         flash("Task not found", "error")
     return redirect(url_for('dashboard') + '#main')
 
-
 @app.route('/mark_in_progress/<int:task_id>')
 @login_required
 def mark_in_progress(task_id):
@@ -98,7 +96,7 @@ def mark_in_progress(task_id):
         flash("Task marked as In Progress", "success")
     else:
         flash("Task not found", "error")
-    return redirect(url_for('dashboard') + '#working-on')
+    return redirect(url_for('dashboard') + '#main')
 
 
 @app.route('/mark_pending/<int:task_id>', methods=['GET'])

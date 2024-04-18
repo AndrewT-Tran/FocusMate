@@ -1,21 +1,23 @@
+#task_top,
+#working_on,
+#completed_tasks {
+  height: 100vh; /* Set the height to 100vh for full screen */
+}
 #play-pause-btn {
-  color: #FFF;
+  color: #fff;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   border-radius: 5px;
 }
+#play-pause-btn.playing {
+  background-color: red; /* Change this to the color you prefer for playing */
+}
 
-#play-pause-btn:hover {
-  background-color: #b3b2ca;
+#play-pause-btn.paused {
+  background-color: green; /* Change this to the color you prefer for paused */
 }
-#task_top, #working_on, #completed_tasks {
-  height: 100vh; /* Set the height to 100vh for full screen */
-}
-.card-content .p {
-  color:red,
 
-}
 .done {
   text-align: center;
   margin-top: 20px;

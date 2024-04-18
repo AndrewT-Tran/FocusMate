@@ -1,21 +1,21 @@
-let hrs = document.getElementById("hrs");
-let min = document.getElementById("min");
-let sec = document.getElementById("sec");
-let colon = document.getElementById("colon");
+const hrs = document.getElementById("hrs");
+const min = document.getElementById("min");
+const sec = document.getElementById("sec");
+const colon = document.getElementById("colon");
 let showSeconds = true; // Flag to track whether to display seconds or not
 
 setInterval(() => {
-  let currentTime = new Date();
-  hrs.innerHTML =
-    (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
-  min.innerHTML =
-    (currentTime.getMinutes() < 10 ? "0" : "") + currentTime.getMinutes();
+  const currentTime = new Date();
+  const currentSeconds = currentTime.getSeconds();
+  const currentMinutes = currentTime.getMinutes();
+
+  hrs.innerHTML = (currentTime.getHours() < 10 ? "0" : "") + currentTime.getHours();
+  min.innerHTML = (currentMinutes < 10 ? "0" : "") + currentMinutes;
 
   if (showSeconds) {
     sec.style.display = "inline"; // Show the seconds
     colon.style.display = "inline"; // Show the colon
-    sec.innerHTML =
-      (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+    sec.innerHTML = (currentSeconds < 10 ? "0" : "") + currentSeconds;
   } else {
     sec.style.display = "none"; // Hide the seconds
     colon.style.display = "none"; // Hide the colon
