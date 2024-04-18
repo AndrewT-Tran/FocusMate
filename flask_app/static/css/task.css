@@ -33,7 +33,7 @@
     border-radius: 5px;
     color: azure;
     padding: 10px;
-    font-size:12px;
+    font-size: 12px;
     transition: background-color 0.3s;
     /* Ensure all cards have the same height */
     min-height: 200px;
@@ -98,4 +98,3 @@
     text-decoration: none;
     color: #999;
 }
-
