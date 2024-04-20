@@ -4,39 +4,39 @@ const sec = document.getElementById("sec");
 const colon = document.getElementById("colon");
 let showSeconds = true; // Flag to track whether to display seconds or not
 
-setInterval(() => {
+function updateClock() {
   const currentTime = new Date();
   let currentHours = currentTime.getHours();
   const currentMinutes = currentTime.getMinutes();
-  
-  // Convert hours to 12-hour format
+  const currentSeconds = currentTime.getSeconds();
+
+  // Convert hours to 12-hour format and adjust display format
   if (currentHours > 12) {
     currentHours -= 12;
   } else if (currentHours === 0) {
     currentHours = 12;
   }
 
-  hrs.innerHTML = (currentHours < 10 ? "0" : "") + currentHours;
-  min.innerHTML = (currentMinutes < 10 ? "0" : "") + currentMinutes;
+  hrs.textContent = (currentHours < 10 ? "0" : "") + currentHours;
+  min.textContent = (currentMinutes < 10 ? "0" : "") + currentMinutes;
 
+  // Conditionally display seconds and colon based on the showSeconds flag
   if (showSeconds) {
-    sec.style.display = "inline"; // Show the seconds
-    colon.style.display = "inline"; // Show the colon
-    sec.innerHTML = (currentTime.getSeconds() < 10 ? "0" : "") + currentTime.getSeconds();
+    sec.textContent = (currentSeconds < 10 ? "0" : "") + currentSeconds;
+    sec.style.display = "inline";
+    colon.style.display = "inline";
   } else {
-    sec.style.display = "none"; // Hide the seconds
-    colon.style.display = "none"; // Hide the colon
+    sec.style.display = "none";
+    colon.style.display = "none";
   }
-}, 1000);
+}
 
-// Function to toggle seconds display
+setInterval(updateClock, 1000); // Update the clock every second
+
 document.addEventListener("DOMContentLoaded", () => {
   const checkbox = document.getElementById("showSeconds");
-  checkbox.addEventListener("change", () => {
-    toggleSeconds(checkbox);
+  checkbox.addEventListener('change', () => {
+    showSeconds = checkbox.checked;
+    updateClock(); // Update immediately on toggle
   });
 });
-
-function toggleSeconds(checkbox) {
-  showSeconds = checkbox.checked;
-}
