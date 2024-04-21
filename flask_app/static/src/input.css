@@ -1,464 +1,466 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 .poppins-thin {
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
 }
 
 .poppins-extralight {
-    font-family: "Poppins", sans-serif;
-    font-weight: 200;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
 }
 
 .poppins-light {
-    font-family: "Poppins", sans-serif;
-    font-weight: 300;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .poppins-regular {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .poppins-medium {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .poppins-semibold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
 }
 
 .poppins-bold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 700;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .poppins-extrabold {
-    font-family: "Poppins", sans-serif;
-    font-weight: 800;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
 }
 
 .poppins-black {
-    font-family: "Poppins", sans-serif;
-    font-weight: 900;
-    font-style: normal;
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
 }
 
 .poppins-thin-italic {
-    font-family: "Poppins", sans-serif;
-    font-weight: 100;
-    font-style: italic;
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: italic;
 }
 
 #task_top,
 #working_on,
 #completed_tasks {
-    height: 100vh;
-    /* Set the height to 100vh for full screen */
+  height: 100vh;
+  /* Set the height to 100vh for full screen */
 }
 
 #play-pause-btn {
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 #play-pause-btn.playing {
-    background-color: red;
-    /* Change this to the color you prefer for playing */
+  background-color: red;
+  /* Change this to the color you prefer for playing */
 }
 
 #play-pause-btn.paused {
-    background-color: green;
-    /* Change this to the color you prefer for paused */
+  background-color: green;
+  /* Change this to the color you prefer for paused */
 }
 
 .done {
-    text-align: center;
-    margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 /* Ensures buttons with icons are aligned inline and centered vertically with the text */
 .row-auto a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Adjusts the size of the SVG icons */
 .svg-icon {
-    width: 16px;
-    height: 16px;
+  width: 16px;
+  height: 16px;
 }
 
 .svg-icon-text {
-    width: 16px;
-    height: 16px;
-    margin-right: 8px;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
 }
 
 /* Styling for inline buttons with icons */
 .button-inline {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", sans-serif;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 input:checked ~ .dot {
-    transform: translateX(100%);
+  transform: translateX(100%);
 }
 
 .second_toggle {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .hero {
-    width: 100%;
-    height: 100vh;
-    /* Set the height to 100vh for full screen */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Set the height to 100vh for full screen */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
 .box {
-    position: relative;
-    width: 70%;
-    max-width: 800px;
-    height: 50vh;
-    max-height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: auto;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+  position: relative;
+  width: 70%;
+  max-width: 800px;
+  height: 50vh;
+  max-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 .clock {
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(50px);
-    vertical-align: middle;
-    color: #fffffff6;
-    z-index: 10;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(50px);
+  vertical-align: middle;
+  color: #fffffff6;
+  z-index: 10;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
 }
 
 #colon {
-    display: inline-block;
-    vertical-align: middle;
-    margin-left: 5px;
-    margin-right: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .clock span {
-    font-size: 5vw;
-    max-width: 110px;
+  font-size: 5vw;
+  max-width: 110px;
+  display: inline-block;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.clock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.colon {
+  margin: 0 5px;
+}
+
+/* Add responsive styles for small screens */
+@media (max-width: 768px) {
+  .clock span {
+    font-size: 12vw;
+    max-width: 80px;
     display: inline-block;
     text-align: center;
     align-items: center;
     justify-content: center;
-}
-
-.clock {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.colon {
-    margin: 0 5px;
-}
-
-/* Add responsive styles for small screens */
-@media (max-width: 768px) {
-    .clock span {
-        font-size: 12vw;
-        max-width: 80px;
-        display: inline-block;
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
+  }
 }
 
 /* Modify clock font size for small screens */
 @media (max-width: 768px) {
-    .clock span {
-        font-size: 10vw;
-        max-width: 80px;
-        align-items: center;
-        justify-content: center;
-    }
+  .clock span {
+    font-size: 10vw;
+    max-width: 80px;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .clock span::after {
-        font-size: 2.4vw;
-        bottom: -2.5vw;
-    }
+  .clock span::after {
+    font-size: 2.4vw;
+    bottom: -2.5vw;
+  }
 }
 
 /* Modify clock font size for large screens */
 @media (min-width: 1200px) {
-    .clock span {
-        font-size: 5vw;
-        max-width: 110px;
-        align-items: center;
-        justify-content: center;
-    }
+  .clock span {
+    font-size: 5vw;
+    max-width: 110px;
+    align-items: center;
+    justify-content: center;
+  }
 
-    .clock span::after {
-        font-size: 1.6vw;
-        bottom: -1.5vw;
-    }
+  .clock span::after {
+    font-size: 1.6vw;
+    bottom: -1.5vw;
+  }
 }
 
 /* Add responsive styles for small screens */
 @media (max-width: 768px) {
-    .box {
-        width: 90%;
-        height: 30vh;
-        max-height: 200px;
-        margin-top: 3vh;
-        margin-bottom: 3vh;
+  .box {
+    width: 90%;
+    height: 30vh;
+    max-height: 200px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+  }
 
-    }
+  .clock span {
+    font-size: 12vw;
+    max-width: 80px;
+  }
 
-    .clock span {
-        font-size: 12vw;
-        max-width: 80px;
-    }
-
-    .clock span::after {
-        font-size: 2.4vw;
-        bottom: -2.5vw;
-    }
+  .clock span::after {
+    font-size: 2.4vw;
+    bottom: -2.5vw;
+  }
 }
 
 #hrs::after {
-    content: "HOUR";
-    color: #0f0;
-    font-weight: 600;
-    margin-bottom: -10px;
+  content: "HOUR";
+  color: #0f0;
+  font-weight: 600;
+  margin-bottom: -10px;
 }
 
 #min::after {
-    content: "MIN";
-    color: #0ff;
-    font-weight: 600;
-    margin-bottom: -10px;
+  content: "MIN";
+  color: #0ff;
+  font-weight: 600;
+  margin-bottom: -10px;
 }
 
 #sec::after {
-    content: "SEC";
-    color: #ff0;
-    font-weight: 600;
-    margin-bottom: -10px;
+  content: "SEC";
+  color: #ff0;
+  font-weight: 600;
+  margin-bottom: -10px;
 }
 
 #hrs::after,
 #min::after,
 #sec::after {
-    display: block;
-    margin-top: 10px;
-    font-size: 14px;
-    text-align: center;
-    /* Adjust the font size and alignment as desired */
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
+  /* Adjust the font size and alignment as desired */
 }
 
 /*------Animated Border---------*/
 .box::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-conic-gradient(from var(--a),
-            #0f0,
-            #ff0,
-            #0ff,
-            #f0f,
-            #0ff);
-    border-radius: 20px;
-    animation: rotate 6s linear infinite;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
+  border-radius: 20px;
+  animation: rotate 6s linear infinite;
 }
 
 .box::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: repeating-conic-gradient(from var(--a),
-            #0f0,
-            #ff0,
-            #0ff,
-            #f0f,
-            #0ff);
-    border-radius: 20px;
-    animation: rotate 4s linear infinite;
-    filter: blur(40px);
-    opacity: 0.75;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
+  border-radius: 20px;
+  animation: rotate 4s linear infinite;
+  filter: blur(40px);
+  opacity: 0.75;
 }
 
 .box style {
-    position: absolute;
-    inset: 4px;
-    background: #242d37;
-    border-radius: 16px;
-    color: #ff0;
-    font-size: 20px;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  inset: 4px;
+  background: #242d37;
+  border-radius: 16px;
+  color: #ff0;
+  font-size: 20px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @property --a {
-    syntax: "<angle>";
-    inherits: false;
-    initial-value: 0deg;
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
 @keyframes rotate {
-    0% {
-        --a: 0;
-    }
+  0% {
+    --a: 0;
+  }
 
-    0% {
-        --a: -360deg;
-    }
+  0% {
+    --a: -360deg;
+  }
 }
 
 /* task */
-#task_top,
-#working_on,
-#completed_tasks {
-    height: 100vh;
-}
-
 
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-    }
+  .container {
+    padding: 0 15px;
+  }
 
-    .flex,
-    .grid {
-        flex-direction: column;
-        gap: 20px;
-    }
+  .flex,
+  .grid {
+    flex-direction: column;
+    gap: 20px;
+  }
 
-    .grid-cols-1,
-    .grid-cols-2,
-    .grid-cols-4 {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
+  .grid-cols-1,
+  .grid-cols-2,
+  .grid-cols-4 {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
 
-    /* Responsive adjustments */
-    .task {
-        font-size: 0.8rem;
-        /* Adjust font size for smaller screens */
-    }
+  /* Responsive adjustments */
+  .task {
+    font-size: 0.8rem;
+    /* Adjust font size for smaller screens */
+  }
 
-    .card-content .p {
-        font-size: 0.8rem;
-        /* Adjust font size of content for smaller screens */
-    }
+  .card-content .p {
+    font-size: 0.8rem;
+    /* Adjust font size of content for smaller screens */
+  }
 }
 
 /* Define media query for smaller screens */
 @media (max-width: 768px) {
-    .task {
-        font-size: 0.8rem;
-        /* Adjust font size for smaller screens */
-    }
+  .task {
+    font-size: 0.8rem;
+    /* Adjust font size for smaller screens */
+  }
 
-    .card-content .p {
-        font-size: 0.8rem;
-        /* Adjust font size of content for smaller screens */
-    }
+  .card-content .p {
+    font-size: 0.8rem;
+    /* Adjust font size of content for smaller screens */
+  }
 }
 
 .task:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Conditional styling based on priority */
 .high-priority {
-    background-color: #ef4444
+  background-color: #ef4444;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .medium-priority {
-    background-color: #facc15
+  background-color: #facc15;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .low-priority {
-    background-color: #22c55e
+  background-color: #22c55e;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Add hover animation for tasks with high priority */
 .high-priority:hover {
-    background-color: #f87171;
+  background-color: #f87171;
 }
 
 /* Add hover animation for tasks with medium priority */
 .medium-priority:hover {
-    background-color: #fef08a;
+  background-color: #fef08a;
 }
 
 /* Add hover animation for tasks with low priority */
 .low-priority:hover {
-    background-color: #86efac;
+  background-color: #86efac;
 }
 
 .completed-task {
-    background-color: rgba(0, 0, 0, 0.1);
-    color: #666;
-    pointer-events: none;
-
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #666;
+  pointer-events: none;
 }
 
 .completed-task:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-    cursor: default;
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: default;
 }
 
 .completed-task a {
-    pointer-events: none;
-    color: #999;
+  pointer-events: none;
+  color: #999;
 }
 
 .completed-task a:hover {
-    text-decoration: none;
-    color: #999;
+  text-decoration: none;
+  color: #999;
 }

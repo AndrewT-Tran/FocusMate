@@ -1,5 +1,5 @@
 /*
-! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.3 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -32,9 +32,11 @@
 4. Use the user's configured `sans` font-family by default.
 5. Use the user's configured `sans` font-feature-settings by default.
 6. Use the user's configured `sans` font-variation-settings by default.
+7. Disable tap highlights on iOS
 */
 
-html {
+html,
+:host {
   line-height: 1.5;
   /* 1 */
   -webkit-text-size-adjust: 100%;
@@ -44,12 +46,14 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* 4 */
   font-feature-settings: normal;
   /* 5 */
   font-variation-settings: normal;
   /* 6 */
+  -webkit-tap-highlight-color: transparent;
+  /* 7 */
 }
 
 /*
@@ -121,8 +125,10 @@ strong {
 }
 
 /*
-1. Use the user's configured `mono` font family by default.
-2. Correct the odd `em` font sizing in all browsers.
+1. Use the user's configured `mono` font-family by default.
+2. Use the user's configured `mono` font-feature-settings by default.
+3. Use the user's configured `mono` font-variation-settings by default.
+4. Correct the odd `em` font sizing in all browsers.
 */
 
 code,
@@ -131,8 +137,12 @@ samp,
 pre {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   /* 1 */
-  font-size: 1em;
+  font-feature-settings: normal;
   /* 2 */
+  font-variation-settings: normal;
+  /* 3 */
+  font-size: 1em;
+  /* 4 */
 }
 
 /*
@@ -201,6 +211,8 @@ textarea {
   /* 1 */
   line-height: inherit;
   /* 1 */
+  letter-spacing: inherit;
+  /* 1 */
   color: inherit;
   /* 1 */
   margin: 0;
@@ -224,9 +236,9 @@ select {
 */
 
 button,
-[type='button'],
-[type='reset'],
-[type='submit'] {
+input:where([type='button']),
+input:where([type='reset']),
+input:where([type='submit']) {
   -webkit-appearance: button;
   /* 1 */
   background-color: transparent;
@@ -482,6 +494,10 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 
 ::backdrop {
@@ -532,6 +548,10 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
+  --tw-contain-size:  ;
+  --tw-contain-layout:  ;
+  --tw-contain-paint:  ;
+  --tw-contain-style:  ;
 }
 
 .container {
@@ -679,6 +699,10 @@ video {
   margin-top: 0.25rem;
 }
 
+.mt-3 {
+  margin-top: 0.75rem;
+}
+
 .mt-4 {
   margin-top: 1rem;
 }
@@ -689,10 +713,6 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
-}
-
-.mt-3 {
-  margin-top: 0.75rem;
 }
 
 .block {
@@ -800,16 +820,16 @@ video {
   gap: 0.5rem;
 }
 
+.gap-4 {
+  gap: 1rem;
+}
+
 .gap-6 {
   gap: 1.5rem;
 }
 
 .gap-8 {
   gap: 2rem;
-}
-
-.gap-4 {
-  gap: 1rem;
 }
 
 .divide-y > :not([hidden]) ~ :not([hidden]) {
@@ -939,11 +959,6 @@ video {
   background-color: rgb(30 41 59 / 0.8);
 }
 
-.bg-slate-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-}
-
 .bg-slate-900\/80 {
   background-color: rgb(15 23 42 / 0.8);
 }
@@ -958,6 +973,10 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-red-900\/80 {
+  background-color: rgb(127 29 29 / 0.8);
+}
+
 .p-1 {
   padding: 0.25rem;
 }
@@ -970,6 +989,10 @@ video {
   padding: 5rem;
 }
 
+.p-4 {
+  padding: 1rem;
+}
+
 .p-5 {
   padding: 1.25rem;
 }
@@ -980,10 +1003,6 @@ video {
 
 .p-8 {
   padding: 2rem;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .px-2 {
@@ -1035,12 +1054,12 @@ video {
   padding-bottom: 0.25rem;
 }
 
-.pt-6 {
-  padding-top: 1.5rem;
-}
-
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pt-6 {
+  padding-top: 1.5rem;
 }
 
 .text-left {
@@ -1049,6 +1068,10 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-start {
+  text-align: start;
 }
 
 .text-2xl {
@@ -1187,6 +1210,11 @@ video {
 .text-rose-700 {
   --tw-text-opacity: 1;
   color: rgb(190 18 60 / var(--tw-text-opacity));
+}
+
+.text-sky-300 {
+  --tw-text-opacity: 1;
+  color: rgb(125 211 252 / var(--tw-text-opacity));
 }
 
 .text-sky-500 {
@@ -1607,12 +1635,14 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(from var(--a),
-            #0f0,
-            #ff0,
-            #0ff,
-            #f0f,
-            #0ff);
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
   border-radius: 20px;
   animation: rotate 6s linear infinite;
 }
@@ -1621,12 +1651,14 @@ input:checked ~ .dot {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-conic-gradient(from var(--a),
-            #0f0,
-            #ff0,
-            #0ff,
-            #f0f,
-            #0ff);
+  background: repeating-conic-gradient(
+    from var(--a),
+    #0f0,
+    #ff0,
+    #0ff,
+    #f0f,
+    #0ff
+  );
   border-radius: 20px;
   animation: rotate 4s linear infinite;
   filter: blur(40px);
@@ -1663,26 +1695,20 @@ input:checked ~ .dot {
 
 /* task */
 
-#task_top,
-#working_on,
-#completed_tasks {
-  height: 100vh;
-}
-
 @media (max-width: 768px) {
   .container {
     padding: 0 15px;
   }
 
   .flex,
-    .grid {
+  .grid {
     flex-direction: column;
     gap: 20px;
   }
 
   .grid-cols-1,
-    .grid-cols-2,
-    .grid-cols-4 {
+  .grid-cols-2,
+  .grid-cols-4 {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
 
@@ -1720,15 +1746,21 @@ input:checked ~ .dot {
 /* Conditional styling based on priority */
 
 .high-priority {
-  background-color: #ef4444
+  background-color: #ef4444;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .medium-priority {
-  background-color: #facc15
+  background-color: #facc15;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .low-priority {
-  background-color: #22c55e
+  background-color: #22c55e;
+  border-radius: 5px;
+  padding: 5px;
 }
 
 /* Add hover animation for tasks with high priority */
@@ -1806,9 +1838,9 @@ input:checked ~ .dot {
   background-color: rgb(251 191 36 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-700:hover {
+.hover\:bg-blue-800:hover {
   --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-emerald-700:hover {
@@ -1930,33 +1962,6 @@ input:checked ~ .dot {
   opacity: 0.25;
 }
 
-@media (prefers-color-scheme: dark) {
-  .dark\:border-white {
-    --tw-border-opacity: 1;
-    border-color: rgb(255 255 255 / var(--tw-border-opacity));
-  }
-
-  .dark\:bg-slate-800 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-slate-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-white {
-    --tw-bg-opacity: 1;
-    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  }
-
-  .dark\:text-white {
-    --tw-text-opacity: 1;
-    color: rgb(255 255 255 / var(--tw-text-opacity));
-  }
-}
-
 @media (min-width: 640px) {
   .sm\:max-w-md {
     max-width: 28rem;
@@ -2027,11 +2032,38 @@ input:checked ~ .dot {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
+  .lg\:p-6 {
+    padding: 1.5rem;
+  }
+
   .lg\:p-8 {
     padding: 2rem;
   }
+}
 
-  .lg\:p-6 {
-    padding: 1.5rem;
+@media (prefers-color-scheme: dark) {
+  .dark\:border-white {
+    --tw-border-opacity: 1;
+    border-color: rgb(255 255 255 / var(--tw-border-opacity));
+  }
+
+  .dark\:bg-slate-800 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(30 41 59 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-slate-900 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(15 23 42 / var(--tw-bg-opacity));
+  }
+
+  .dark\:bg-white {
+    --tw-bg-opacity: 1;
+    background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  }
+
+  .dark\:text-white {
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
   }
 }
