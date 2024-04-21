@@ -101,16 +101,6 @@
 }
 
 /* Adjusts the size of the SVG icons */
-.svg-icon {
-  width: 16px;
-  height: 16px;
-}
-
-.svg-icon-text {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-}
 
 /* Styling for inline buttons with icons */
 .button-inline {
@@ -190,12 +180,6 @@ input:checked ~ .dot {
   max-width: 110px;
   display: inline-block;
   text-align: center;
-  align-items: center;
-  justify-content: center;
-}
-
-.clock {
-  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -299,22 +283,7 @@ input:checked ~ .dot {
 }
 
 /*------Animated Border---------*/
-.box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: repeating-conic-gradient(
-    from var(--a),
-    #0f0,
-    #ff0,
-    #0ff,
-    #f0f,
-    #0ff
-  );
-  border-radius: 20px;
-  animation: rotate 6s linear infinite;
-}
-
+.box::before,
 .box::after {
   content: "";
   position: absolute;
@@ -328,6 +297,13 @@ input:checked ~ .dot {
     #0ff
   );
   border-radius: 20px;
+}
+
+.box::before {
+  animation: rotate 6s linear infinite;
+}
+
+.box::after {
   animation: rotate 4s linear infinite;
   filter: blur(40px);
   opacity: 0.75;
@@ -357,7 +333,7 @@ input:checked ~ .dot {
     --a: 0;
   }
 
-  0% {
+  100% {
     --a: -360deg;
   }
 }
@@ -367,22 +343,23 @@ input:checked ~ .dot {
 }
 
 /* Conditional styling based on priority */
-.high-priority {
-  background-color: #ef4444;
+.high-priority,
+.medium-priority,
+.low-priority {
   border-radius: 5px;
   padding: 5px;
+}
+
+.high-priority {
+  background-color: #ef4444;
 }
 
 .medium-priority {
   background-color: #facc15;
-  border-radius: 5px;
-  padding: 5px;
 }
 
 .low-priority {
   background-color: #22c55e;
-  border-radius: 5px;
-  padding: 5px;
 }
 
 /* Add hover animation for tasks with high priority */
@@ -420,6 +397,7 @@ input:checked ~ .dot {
   text-decoration: none;
   color: #999;
 }
+
 /* Base styling for task cards */
 .task-card {
   color: black; /* light text */
@@ -434,15 +412,86 @@ input:checked ~ .dot {
   transform: translateY(-5px);
 }
 
-/* Responsive grid setup */
+/* Container Style */
+.container {
+  width: 100%; /* Ensure the container takes full width */
+  max-width: 1200px; /* Maximum width can be adjusted based on design requirements */
+  margin: 0 auto; /* Center the container */
+  padding: 0 15px; /* Padding on the sides for some breathing room */
+}
+
+/* Grid Container Flex Setup */
 .grid-container {
   display: grid;
-  grid-gap: 1rem; /* Space between cards */
-  padding: 1rem; /* Padding around the entire grid */
   grid-template-columns: repeat(
-    auto-fit,
+    auto-fill,
     minmax(250px, 1fr)
-  ); /* Create as many columns as possible but not narrower than 250px */
+  ); /* Create columns that fill the space */
+  gap: 20px; /* Space between cards */
+  padding: 0 20px; /* Padding on the sides */
+}
+
+.task-card {
+  background: #2d3748; /* Background color for cards */
+  color: #e2e8f0; /* Text color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  justify-content: space-between; /* Space content out */
+}
+
+.link-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px; /* Adjusts the space between the icon and text */
+  padding: 4px 8px; /* Adjusts the padding of the button */
+  font-size: 12px; /* Adjusts the font size of the button */
+  width: 100px; /* Adjusts the width of the button */
+  height: 30px; /* Adjusts the height of the button */
+}
+
+.svg-icon {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Add responsive styles for small screens */
+@media (max-width: 768px) {
+  .link-button {
+    font-size: 8px; /* Adjusts the font size for small screens */
+    width: 80px; /* Adjusts the width for small screens */
+    height: 24px; /* Adjusts the height for small screens */
+  }
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.link-button:hover .svg-icon {
+  animation: pulse 2s infinite;
+}
+
+.link-button:hover .svg-icon {
+  transform: scale(1.2); /* Example hover effect: scale up the icon */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: 1fr; /* One column on small screens */
+  }
 }
 
 /* Ensures the cards use 4 columns in larger screens and fewer in smaller screens */
@@ -463,7 +512,7 @@ input:checked ~ .dot {
 @media (max-width: 768px) {
   /* Smaller devices */
   .grid-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 
