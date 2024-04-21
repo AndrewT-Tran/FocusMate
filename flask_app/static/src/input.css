@@ -119,5 +119,346 @@
     justify-content: center;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    box-sizing: border-box;
+}
 
-/* signup */
+input:checked ~ .dot {
+    transform: translateX(100%);
+}
+
+.second_toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hero {
+    width: 100%;
+    height: 100vh;
+    /* Set the height to 100vh for full screen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.box {
+    position: relative;
+    width: 70%;
+    max-width: 800px;
+    height: 50vh;
+    max-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.clock {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(50px);
+    vertical-align: middle;
+    color: #fffffff6;
+    z-index: 10;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#colon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.clock span {
+    font-size: 5vw;
+    max-width: 110px;
+    display: inline-block;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.clock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.colon {
+    margin: 0 5px;
+}
+
+/* Add responsive styles for small screens */
+@media (max-width: 768px) {
+    .clock span {
+        font-size: 12vw;
+        max-width: 80px;
+        display: inline-block;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Modify clock font size for small screens */
+@media (max-width: 768px) {
+    .clock span {
+        font-size: 10vw;
+        max-width: 80px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clock span::after {
+        font-size: 2.4vw;
+        bottom: -2.5vw;
+    }
+}
+
+/* Modify clock font size for large screens */
+@media (min-width: 1200px) {
+    .clock span {
+        font-size: 5vw;
+        max-width: 110px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .clock span::after {
+        font-size: 1.6vw;
+        bottom: -1.5vw;
+    }
+}
+
+/* Add responsive styles for small screens */
+@media (max-width: 768px) {
+    .box {
+        width: 90%;
+        height: 30vh;
+        max-height: 200px;
+        margin-top: 3vh;
+        margin-bottom: 3vh;
+
+    }
+
+    .clock span {
+        font-size: 12vw;
+        max-width: 80px;
+    }
+
+    .clock span::after {
+        font-size: 2.4vw;
+        bottom: -2.5vw;
+    }
+}
+
+#hrs::after {
+    content: "HOUR";
+    color: #0f0;
+    font-weight: 600;
+    margin-bottom: -10px;
+}
+
+#min::after {
+    content: "MIN";
+    color: #0ff;
+    font-weight: 600;
+    margin-bottom: -10px;
+}
+
+#sec::after {
+    content: "SEC";
+    color: #ff0;
+    font-weight: 600;
+    margin-bottom: -10px;
+}
+
+#hrs::after,
+#min::after,
+#sec::after {
+    display: block;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+    /* Adjust the font size and alignment as desired */
+}
+
+/*------Animated Border---------*/
+.box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-conic-gradient(from var(--a),
+            #0f0,
+            #ff0,
+            #0ff,
+            #f0f,
+            #0ff);
+    border-radius: 20px;
+    animation: rotate 6s linear infinite;
+}
+
+.box::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-conic-gradient(from var(--a),
+            #0f0,
+            #ff0,
+            #0ff,
+            #f0f,
+            #0ff);
+    border-radius: 20px;
+    animation: rotate 4s linear infinite;
+    filter: blur(40px);
+    opacity: 0.75;
+}
+
+.box style {
+    position: absolute;
+    inset: 4px;
+    background: #242d37;
+    border-radius: 16px;
+    color: #ff0;
+    font-size: 20px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@property --a {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0deg;
+}
+
+@keyframes rotate {
+    0% {
+        --a: 0;
+    }
+
+    0% {
+        --a: -360deg;
+    }
+}
+
+/* task */
+#task_top,
+#working_on,
+#completed_tasks {
+    height: 100vh;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .flex,
+    .grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .grid-cols-1,
+    .grid-cols-2,
+    .grid-cols-4 {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    /* Responsive adjustments */
+    .task {
+        font-size: 0.8rem;
+        /* Adjust font size for smaller screens */
+    }
+
+    .card-content .p {
+        font-size: 0.8rem;
+        /* Adjust font size of content for smaller screens */
+    }
+}
+
+/* Define media query for smaller screens */
+@media (max-width: 768px) {
+    .task {
+        font-size: 0.8rem;
+        /* Adjust font size for smaller screens */
+    }
+
+    .card-content .p {
+        font-size: 0.8rem;
+        /* Adjust font size of content for smaller screens */
+    }
+}
+
+.task:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Conditional styling based on priority */
+.high-priority {
+    background-color: #ef4444
+}
+
+.medium-priority {
+    background-color: #facc15
+}
+
+.low-priority {
+    background-color: #22c55e
+}
+
+/* Add hover animation for tasks with high priority */
+.high-priority:hover {
+    background-color: #f87171;
+}
+
+/* Add hover animation for tasks with medium priority */
+.medium-priority:hover {
+    background-color: #fef08a;
+}
+
+/* Add hover animation for tasks with low priority */
+.low-priority:hover {
+    background-color: #86efac;
+}
+
+.completed-task {
+    background-color: rgba(0, 0, 0, 0.1);
+    color: #666;
+    pointer-events: none;
+
+}
+
+.completed-task:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    cursor: default;
+}
+
+.completed-task a {
+    pointer-events: none;
+    color: #999;
+}
+
+.completed-task a:hover {
+    text-decoration: none;
+    color: #999;
+}
