@@ -3,6 +3,7 @@ from flask_app import app
 from flask_app.models.task_model import Task
 from flask_app.models.user_model import User
 from flask_login import login_required, current_user
+from datetime import date
 
 
 @app.route('/dashboard')
@@ -35,7 +36,8 @@ def edit_task(task_id):
 @login_required
 def add_task():
     user = current_user  # Get the current user
-    return render_template("add_task.html", user=user)
+    today_date = date.today().isoformat()
+    return render_template("add_task.html", user=user,today_date=today_date)
 
 
 @app.route('/post/task', methods=['POST'])
