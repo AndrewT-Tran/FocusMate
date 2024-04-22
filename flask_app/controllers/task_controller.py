@@ -128,44 +128,33 @@ def testing():
 
 # Task Controller
 
-
 @app.route('/update_priority/<int:task_id>', methods=['POST'])
 @login_required
 def update_priority(task_id):
-    # Get the task by ID
-    task = Task.get_by_id(task_id)
+    task = Task.get_by_id(task_id)  # Retrieve the task based on the task ID
 
-    # Check if the task exists
     if task:
-        # Get the new priority from the form data
         new_priority = request.form.get('priority')
-
-        # Validate the new priority (optional step)
         if new_priority in ['High', 'Medium', 'Low']:
-            # Update the task's priority
+            # Set the new priority directly to the task object
             task.priority = new_priority
-
-            # Save the updated task
             Task.update({
                 'task_id': task_id,
                 'title': task.title,
                 'description': task.description,
-                'priority': new_priority,  # Update the priority
+                'priority': new_priority,  # Update the priority here
                 'deadline': task.deadline,
                 'status': task.status
             })
-
-            # Flash a success message
             flash("Priority updated successfully", "success")
         else:
-            # Flash an error message if the priority is invalid
             flash("Invalid priority", "error")
     else:
-        # Flash an error message if the task doesn't exist
         flash("Task not found", "error")
 
-    # Redirect back to the dashboard
-    return redirect(url_for('dashboard') + '#main')
+    # Redirect to the section on the dashboard page that directly shows the updated task
+    return redirect(url_for('dashboard') + '#task-' + str(task_id))
+
 
 @app.route('/clear_tasks/<int:user_id>')
 @login_required

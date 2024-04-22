@@ -166,15 +166,21 @@
                     <div class="grid-container">
                         {% for task in user.tasks %}
                         {% if task.status == 'Pending' %}
-                        <div class="task-card {% if task.priority == 'High' %} high-priority
+                        <div id="task-{{ task.task_id }}" class="task-card {% if task.priority == 'High' %} high-priority
                     {% elif task.priority == 'Medium' %} medium-priority
                     {% else %} low-priority {% endif %}">
-                            <h4>{{ task.title }}</h4>
-                            <p>Priority: {{ task.priority }}</p>
-                            <p>Status: {{ task.status }}</p>
-                            <p>Deadline: {{ task.deadline.strftime('%b %d, %Y') }}</p>
-                            <p class="my-3 text-stone-300">{{ task.description }}</p>
-                            <div class="action-buttons">
+                            <h2 class="font-bold text-center my-2">{{ task.title }}</h2>
+
+                            <p><span class="font-bold">Priority: </span> {{ task.priority }}</p>
+                            <p><span class="font-bold">Status: </span> {{ task.status }}</p>
+                            <p><span class="font-bold">Deadline: </span> {{ task.deadline.strftime('%b %d, %Y') }}</p>
+                            <div class="mb-1">
+                                <label class="font-bold">Description: </label>
+                                <p class="text-slate-500 flex items-center justify-center">{{ task.description }}
+                                </p>
+                            </div>
+
+                            <div class="action-buttons ">
                                 <a href="/edit/task/{{ task.task_id }}"
                                     class="button-inline bg-green-600 hover:bg-green-700 text-white py-1 px-2 rounded mr-2">
                                     Edit
@@ -220,52 +226,85 @@
                     <div class="grid-container">
                         {% for task in user.tasks %}
                         {% if task.status == 'InProgress' %}
-                        <div class="task-card {% if task.priority == 'High' %} high-priority
+
+                        <div id="task-{{ task.task_id }}" class="task-card {% if task.priority == 'High' %} high-priority
             {% elif task.priority == 'Medium' %} medium-priority
             {% else %} low-priority {% endif %}">
-                            <h4>{{ task.title }}</h4>
-                            <p>Priority: {{ task.priority }}</p>
-                            <p>Status: {{ task.status }}</p>
-                            <p>Deadline: {{ task.deadline.strftime('%b %d, %Y') }}</p>
-                            <p class="my-3 text-stone-300">{{ task.description }}</p>
+                            <h2 class="font-bold text-center my-2">{{ task.title }}</h2>
+
+                            <p><span class="font-bold">Priority: </span> {{ task.priority }}</p>
+                            <p><span class="font-bold">Status: </span> {{ task.status }}</p>
+
+
+                            <label class="font-bold">Update Priority :</label>
+                            <form method="POST" action="{{ url_for('update_priority', task_id=task.task_id) }}"
+                                id="priority-form-{{ task.task_id }}">
+                                <input type="radio" id="priority-high-{{ task.task_id }}" name="priority" value="High"
+                                    onchange="submitPriorityForm('{{ task.task_id }}')" {{ 'checked' if
+                                    task.priority=='High' else '' }}>
+                                <label for="priority-high-{{ task.task_id }}">High</label>
+
+                                <input type="radio" id="priority-medium-{{ task.task_id }}" name="priority"
+                                    value="Medium" onchange="submitPriorityForm('{{ task.task_id }}')" {{ 'checked' if
+                                    task.priority=='Medium' else '' }}>
+                                <label for="priority-medium-{{ task.task_id }}">Medium</label>
+
+                                <input type="radio" id="priority-low-{{ task.task_id }}" name="priority" value="Low"
+                                    onchange="submitPriorityForm('{{ task.task_id }}')" {{ 'checked' if
+                                    task.priority=='Low' else '' }}>
+                                <label for="priority-low-{{ task.task_id }}">Low</label>
+                            </form>
+
+
+
+
+
+
+                            <p><span class="font-bold">Deadline: </span> {{ task.deadline.strftime('%b %d, %Y') }}</p>
+                            <div class="mb-1">
+                                <label class="font-bold">Description: </label>
+                                <p class="text-slate-500 flex items-center justify-center">{{ task.description }}
+                                </p>
+                            </div>
 
                             <!-- Task modification buttons -->
                             <div class="my-2">
-                                <a href="/edit/task/{{ task.task_id }}"
-                                    class="button-inline bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded mr-2">
-                                    Edit
-                                </a>
-                                <a href="/delete/{{ task.task_id }}"
-                                    class="button-inline bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
-                                    Delete
-                                </a>
-                                <div class="my-2">
-                                    <div class="flex flex-wrap justify-center gap-1">
-                                        <a href="/mark_pending/{{ task.task_id }}"
-                                            class="button-inline bg-amber-600 hover:bg-amber-500 text-white py-2 px-4 rounded link-button">
-                                            <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 16 16">
-                                                <path fill="currentColor" fill-rule="evenodd"
-                                                    d="M8 14a.75.75 0 0 1-.75-.75V4.56L4.03 7.78a.75.75 0 0 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.75 4.56v8.69A.75.75 0 0 1 8 14"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            <span class="text-xs">Mark Pending</span>
-                                        </a>
-                                        <a href="/mark_completed/{{ task.task_id }}"
-                                            class="button-inline bg-green-600 hover:bg-green-500 text-white py-2 px-4 rounded link-button">
-                                            <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
-                                                fill="currentColor">
-                                                <path fill-rule="evenodd"
-                                                    d="M8 2a.75.75 0 0 1 .75.75v8.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.22 3.22V2.75A.75.75 0 0 1 8 2"
-                                                    clip-rule="evenodd" />
-                                            </svg>
-                                            <span class="text-xs">Mark Completed</span>
-                                        </a>
-                                    </div>
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    <a href="/edit/task/{{ task.task_id }}"
+                                        class="button-inline bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded mr-2">
+                                        Edit
+                                    </a>
+                                    <a href="/delete/{{ task.task_id }}"
+                                        class="button-inline bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded">
+                                        Delete
+                                    </a>
                                 </div>
-
+                            </div>
+                            <div class="my-2">
+                                <div class="flex flex-wrap justify-center gap-1">
+                                    <a href="/mark_pending/{{ task.task_id }}"
+                                        class="button-inline bg-amber-600 hover:bg-amber-500 text-white py-2 px-4 rounded link-button">
+                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                            <path fill="currentColor" fill-rule="evenodd"
+                                                d="M8 14a.75.75 0 0 1-.75-.75V4.56L4.03 7.78a.75.75 0 0 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.75 4.56v8.69A.75.75 0 0 1 8 14"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-xs">Mark Pending</span>
+                                    </a>
+                                    <a href="/mark_completed/{{ task.task_id }}"
+                                        class="button-inline bg-green-600 hover:bg-green-500 text-white py-2 px-4 rounded link-button">
+                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                                            fill="currentColor">
+                                            <path fill-rule="evenodd"
+                                                d="M8 2a.75.75 0 0 1 .75.75v8.69l3.22-3.22a.75.75 0 1 1 1.06 1.06l-4.5 4.5a.75.75 0 0 1-1.06 0l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.22 3.22V2.75A.75.75 0 0 1 8 2"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-xs">Mark Completed</span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
+
                         {% endif %}
                         {% endfor %}
                     </div>
@@ -274,53 +313,58 @@
                     {% endif %}
                 </div>
 
+        </div>
 
 
 
-                <!-- Completed -->
-                <div id="completed" class="container px-4 mx-auto mb-10">
-                    <div class="flex justify-center mb-6 md:mb-12">
-                        <div class="max-w-lg text-center">
-                            <h2 class="text-3xl text-emerald-600 leading-none poppins-bold md:text-[45px] my-4">
-                                Completed
-                            </h2>
-                            <h2 class="text-3xl text-slate-200 poppins-bold p-20">You completed <span
-                                    class="text-4xl text-rose-700">{{
-                                    user.tasks|selectattr('status', 'equalto', 'Completed')|list|length }}</span> tasks
-                                <span class="text-rose-600 font-extrabold italic"> </span>!
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="flex justify-center mb-6"> <!-- Center the Clear All button -->
-                        <a href="/clear_tasks/{{ user.user_id }}"
-                            class="button-inline  bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded">
-                            Clear All
-                        </a>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center pt-6">
-                        {% for task in user.tasks %}
-                        {% if task.status == 'Completed' %}
-                        <div class="w-full poppins-regular  rounded-lg bg-gray-800 text-stone-400/50">
-                            <div class="text-center p-5">
-                                <p>Title: {{ task.title }}</p>
-                                <p>Description: {{ task.description }}</p>
-                                <p>Status: {{ task.status }}</p>
-                                <p>Created At: {{ task.created_at.strftime('%b %d, %Y ') }}</p>
-                                <p>Completed: </p>
-                                <p class="text-gray-50 poppins-light">{{ task.updated_at.strftime('%b %d, %Y, %I:%M %p')
-                                    }}
-                                </p>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
+
+
+        <!-- Completed -->
+        <div id="completed" class="container px-4 mx-auto mb-10">
+            <div class="flex justify-center mb-6 md:mb-12">
+                <div class="max-w-lg text-center">
+                    <h2 class="text-3xl text-emerald-600 leading-none poppins-bold md:text-[45px] my-4">
+                        Completed
+                    </h2>
+                    <h2 class="text-3xl text-slate-200 poppins-bold p-20">You completed <span
+                            class="text-4xl text-rose-700">{{
+                            user.tasks|selectattr('status', 'equalto', 'Completed')|list|length }}</span> tasks
+                        <span class="text-rose-600 font-extrabold italic"> </span>!
+                    </h2>
+                </div>
+            </div>
+            <div class="flex justify-center mb-6"> <!-- Center the Clear All button -->
+                <a href="/clear_tasks/{{ user.user_id }}"
+                    class="button-inline  bg-red-600 hover:bg-red-500 text-white py-2 px-4 rounded">
+                    Clear All
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-center pt-6">
+                {% for task in user.tasks %}
+                {% if task.status == 'Completed' %}
+                <div class="w-full poppins-regular  rounded-lg bg-gray-800 text-stone-400/50">
+                    <div class="text-center p-5">
+                        <p>Title: {{ task.title }}</p>
+                        <p>Description: {{ task.description }}</p>
+                        <p>Status: {{ task.status }}</p>
+                        <p>Created At: {{ task.created_at.strftime('%b %d, %Y ') }}</p>
+                        <p>Completed: </p>
+                        <p class="text-gray-50 poppins-light">{{ task.updated_at.strftime('%b %d, %Y, %I:%M %p')
+                            }}
+                        </p>
                     </div>
                 </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
 
-                {# Scripts #}
-                <script src="{{ url_for('static', filename='js/audio.js') }}"></script>
-                <script src="{{ url_for('static', filename='js/dateUil.js') }}"></script>
-                <script src="{{ url_for('static', filename='js/digitalclock.js') }}"></script>
+        {# Scripts #}
+        <script src="{{ url_for('static', filename='js/audio.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/dateUil.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/digitalclock.js') }}"></script>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
     </body>
 
 

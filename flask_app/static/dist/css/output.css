@@ -1225,6 +1225,16 @@ video {
   color: rgb(24 24 27 / var(--tw-text-opacity));
 }
 
+.text-stone-500 {
+  --tw-text-opacity: 1;
+  color: rgb(120 113 108 / var(--tw-text-opacity));
+}
+
+.text-slate-500 {
+  --tw-text-opacity: 1;
+  color: rgb(100 116 139 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }
@@ -1717,8 +1727,8 @@ input:checked ~ .dot {
 .task-card {
   background: #2d3748;
   /* Background color for cards */
-  color: #e2e8f0;
-  /* Text color */
+  color: black;
+  /** Text color */
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -1728,6 +1738,13 @@ input:checked ~ .dot {
   /* Stack content vertically */
   justify-content: space-between;
   /* Space content out */
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+.task-card:hover {
+  transform: translateY(-5px);
 }
 
 .link-button {
@@ -1861,6 +1878,21 @@ input:checked ~ .dot {
 }
 
 /* light blue */
+
+@keyframes jump {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.jump {
+  animation: jump 0.5s ease-in-out;
+}
 
 @keyframes bounce {
   0%, 100% {
