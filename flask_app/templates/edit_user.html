@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Edit {{ user.first_name }}'s Profile</title>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='dist/css/output.css') }}" />
+	</head>
+	<body class="bg-gray-900 flex justify-center items-center h-screen">
+		<div class="max-w-md bg-gray-200 rounded-lg shadow-lg p-6">
+			<h1 class="text-3xl poppins-extrabold text-cyan-600 mb-4">
+				Edit {{ user.first_name }}'s Profile
+			</h1>
+			<!-- Display Flash Messages -->
+			{% for message in get_flashed_messages() %}
+			<div class="text-red-600 poppins-bold text-center mb-4">
+				{{ message }}
+			</div>
+			{% endfor %}
+			<hr class="mb-4" />
+			<form action="{{ url_for('update_user_profile') }}" method="post">
+				<div>
+					<label for="first_name">First Name:</label>
+					<input
+						type="text"
+						id="first_name"
+						name="first_name"
+						value="{{ user.first_name }}" />
+				</div>
+
+				<div>
+					<label for="last_name">Last Name:</label>
+					<input
+						type="text"
+						id="last_name"
+						name="last_name"
+						value="{{ user.last_name }}" />
+				</div>
+
+				<div>
+					<label for="email">Email:</label>
+					<input
+						type="email"
+						id="email"
+						name="email"
+						value="{{ user.email }}" />
+				</div>
+
+				<div>
+					<label for="username">Username:</label>
+					<input
+						type="text"
+						id="username"
+						name="username"
+						value="{{ user.username }}" />
+				</div>
+
+				<div>
+					<label for="password">New Password (optional):</label>
+					<input
+						type="password"
+						id="password"
+						name="password"
+						placeholder="Enter new password if changing" />
+				</div>
+
+				<div>
+					<label for="confirm_password">Confirm New Password:</label>
+					<input
+						type="password"
+						id="confirm_password"
+						name="confirm_password"
+						placeholder="Confirm new password" />
+				</div>
+
+				<div class="text-center">
+					<!-- Added text-center class -->
+					<button
+						class="mt-4 mx-auto block text-center text-lg text-cyan-600 hover:text-cyan-700 poppins-bold"
+						type="submit">
+						Update Profile
+					</button>
+				</div>
+			</form>
+
+			<hr class="mt-4" />
+			<div class="text-center">
+				<!-- Added text-center class -->
+
+				<a
+					href="/profile"
+					class="block text-center text-lg text-red-600 hover:text-red-700 poppins-bold"
+					>Cancel</a
+				>
+			</div>
+		</div>
+	</body>
+</html>
