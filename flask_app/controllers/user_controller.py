@@ -17,7 +17,7 @@ def create_user():
     result_username = connectToMySQL('focusmate').query_db(
         query_username, {'username': form_data['username']})
     if result_username[0]['COUNT(*)'] > 0:
-        flash("Username already exists", "error")
+        flash("Username already exists", "username_error")
         return redirect('/signup')
 
     # Check if email already exists
@@ -25,7 +25,7 @@ def create_user():
     result_email = connectToMySQL('focusmate').query_db(
         query_email, {'email': form_data['email']})
     if result_email[0]['COUNT(*)'] > 0:
-        flash("Email already exists", "error")
+        flash("Email already exists", "email_error")
         return redirect('/signup')
 
     if not User.validate(form_data):
