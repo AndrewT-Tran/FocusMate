@@ -20,15 +20,33 @@ def dashboard():
 @login_required
 def edit_task(task_id):
     task = Task.get_by_id(task_id)
+    if not task:
+        flash("Task not found", "error")
+        return redirect('/dashboard')  # Redirect if task does not exist
+
     if request.method == 'POST':
-        task.title = request.form['title']
-        task.description = request.form['description']
-        task.priority = request.form['priority']
-        task.deadline = request.form['deadline']
-        task.status = request.form['status']
-        Task.update(task_id, task)  # Update the task
-        flash("Task updated successfully", "success")
+        try:
+            
+            task.title = request.form['title']
+            task.description = request.form['description']
+            task.priority = request.form['priority']
+            task.deadline = request.form['deadline']
+            task.status = request.form['status']
+            
+            Task.update({
+            'task_id': task_id,
+            'title': task.title,
+            'description': task.description,
+            'priority': task.priority,
+            'deadline': task.deadline,
+            'status': task.status
+        })  # Update the   # Safely update the task
+            flash("Task updated successfully", "success")
+        except Exception as e:
+            flash(f"An error occurred while updating the task: {str(e)}", "error")
+
         return redirect('/dashboard')
+
     return render_template('edit_task.html', task=task)
 
 
