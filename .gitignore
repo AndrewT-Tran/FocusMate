@@ -262,6 +262,10 @@ pyrightconfig.json
 # End of https://www.toptal.com/developers/gitignore/api/flask,python
 focusmate.mwb
 .gitignore
+<<<<<<< HEAD
 ._focusmate.mwb.bak
 ._focusmate.mwb
 focusmate.mwb.bak
+=======
+createdbSQL.sql
+>>>>>>> d3bca0f (	modified:   .gitignore)
